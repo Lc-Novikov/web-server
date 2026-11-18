@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOUSHOU MARINE - Conectar Sub-Bot</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0a0a0f;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:#15151f;border:1px solid #2a2a3a;border-radius:20px;padding:30px;width:100%;max-width:420px;text-align:center}
+h1{font-size:22px;margin-bottom:5px;color:#00d4ff}
+p{color:#aaa;font-size:13px;margin-bottom:20px}
+input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#0a0a0f;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
+button{width:100%;padding:14px;border:none;border-radius:12px;background:#00d4ff;color:#000;font-weight:bold;font-size:16px;cursor:pointer}
+button:disabled{opacity:.5}
+#codeBox{display:none;margin-top:20px;background:#0a0a0f;border:1px dashed #00d4ff;border-radius:12px;padding:20px}
+#code{font-size:32px;letter-spacing:6px;font-weight:bold;color:#00d4ff}
+#status{margin-top:15px;font-size:13px;color:#ffcc00}
+.success{color:#00ff88!important}
+.error{color:#ff5555!important}
+ol{text-align:left;font-size:12px;color:#aaa;margin-top:15px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>HOUSHOU MARINE - AI</h1>
+<p>Conecta tu número como Sub-Bot</p>
+<input id="number" type="tel" placeholder="51987654321 - con código de país">
+<button id="btn" onclick="getCode()">Generar Código</button>
+<div id="codeBox">
+<div style="font-size:12px;color:#aaa">TU CÓDIGO ES:</div>
+<div id="code">--------</div>
+<div style="font-size:12px;color:#aaa;margin-top:10px">Pégalo en WhatsApp > Dispositivos vinculados > Vincular con código</div>
+</div>
+<div id="status"></div>
+<ol>
+<li>Genera el código aquí</li>
+<li>Pégalo en tu WhatsApp en menos de 60 segundos</li>
+<li>Espera a que diga Conectado</li>
+<li>No cierres esta página hasta que conecte</li>
+</ol>
+</div>
+<script>
+const API_URL = "";
+let checkInterval = null;
+async function getCode(){
+  const number = document.getElementById('number').value.replace(/[^0-9]/g,'');
+  if(number.length < 8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
+  document.getElementById('btn').disabled = true;
+  document.getElementById('status').textContent = 'Generando código...';
+  document.getElementById('status').className = '';
+  try{
+    const res = await fetch(API_URL + '/api/pair', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number})});
+    const data = await res.json();
+    if(!data.code) throw new Error(data.error || 'Error');
+    document.getElementById('codeBox').style.display = 'block';
+    document.getElementById('code').textContent = data.code;
+    document.getElementById('status').textContent = 'Código generado, pégalo rápido en tu WhatsApp';
+    if(checkInterval) clearInterval(checkInterval);
+    checkInterval = setInterval(async ()=>{
+      const r = await fetch(API_URL + '/api/status?number=' + number);
+      const s = await r.json();
+      if(s.connected){
+        clearInterval(checkInterval);
+        document.getElementById('status').textContent = '✅ CONECTADO COMO SUB-BOT';
+        document.getElementById('status').className = 'success';
+        document.getElementById('btn').disabled = false;
+      }
+    }, 3000);
+  }catch(e){
+    document.getElementById('status').textContent = 'Error: ' + e.message;
+    document.getElementById('status').className = 'error';
+    document.getElementById('btn').disabled = false;
+  }
+}
+</script>
+</body>
+</html>
