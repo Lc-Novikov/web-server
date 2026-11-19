@@ -16,7 +16,11 @@
     pollQR: null,
     pollStatus: null,
     elapsedTimer: null,
+    crewSig: '',
+    reviewsSig: '',
   };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const els = {
     net: $('#net'),
@@ -74,26 +78,49 @@
     typeof value === 'string' &&
     (/^(https?:\/\/|data:image\/)/i.test(value) || /^(\/|\.{1,2}\/|assets\/)/i.test(value));
 
-  const iconAnchor = `
-    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true">
-      <circle cx="12" cy="5.2" r="2.1"/>
-      <path d="M12 7.6V19"/>
-      <path d="M8.1 10.4h7.8"/>
-      <path d="M12 19c-3.3 0-5.5-2.3-5.9-5.3M12 19c3.3 0 5.5-2.3 5.9-5.3"/>
-    </svg>`;
+  const icon = (name, cls = '') =>
+    `<svg class="icon ${cls}" aria-hidden="true"><use href="#i-${name}"></use></svg>`;
 
-  const iconCrown = `
-    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
-      <path d="M3 8l4.5 3L12 5l4.5 6L21 8l-2 10H5L3 8Z"/>
-    </svg>`;
-
-  function stateBlock(title, sub, action = '') {
+  function stateBlock(title, sub, action = '', iconName = 'search') {
     return `<div class="state">
-      ${iconAnchor}
+      ${icon(iconName, 'icon-state')}
       <p>${escapeHTML(title)}</p>
       <p class="state-sub">${escapeHTML(sub)}</p>
       ${action}
     </div>`;
+  }
+
+  function animateCount(el, value, pad = true) {
+    const target = Number(value);
+    if (!Number.isFinite(target)) {
+      el.textContent = '—';
+      return;
+    }
+    if (reduceMotion) {
+      el.textContent = pad ? pad2(target) : String(target);
+      el.dataset.count = String(target);
+      return;
+    }
+    const from = Number(el.dataset.count || 0);
+    if (from === target) {
+      el.textContent = pad ? pad2(target) : String(target);
+      return;
+    }
+    const start = performance.now();
+    const duration = 550;
+    cancelAnimationFrame(el._raf);
+    const tick = (now) => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(from + (target - from) * eased);
+      el.textContent = pad ? pad2(current) : String(current);
+      if (progress < 1) {
+        el._raf = requestAnimationFrame(tick);
+      } else {
+        el.dataset.count = String(target);
+      }
+    };
+    el._raf = requestAnimationFrame(tick);
   }
 
   async function api(path, options = {}) {
@@ -151,7 +178,7 @@
       ? `<a class="crew-contact" href="https://wa.me/${digits}" target="_blank" rel="noopener noreferrer">wa.me/${escapeHTML(digits)}</a>`
       : '<span class="crew-contact">Sin número</span>';
 
-    return `<li class="crew-row">
+    return `<li class="crew-row" style="--i:${index}">
       <span class="crew-index">${pad2(index + 1)}</span>
       <div class="crew-id">
         <span class="crew-avatar">
@@ -161,8 +188,8 @@
         <span class="crew-name" title="${escapeHTML(name)}">${escapeHTML(name)}</span>
       </div>
       ${contact}
-      <span class="badge ${isVip ? 'badge-vip' : 'badge-normal'}">${isVip ? iconCrown : ''}${isVip ? 'VIP' : 'Normal'}</span>
-      <span class="crew-status"><span class="dot" aria-hidden="true"></span>A bordo</span>
+      <span class="badge ${isVip ? 'badge-vip' : 'badge-normal'}">${isVip ? icon('crown') : ''}${isVip ? 'VIP' : 'Normal'}</span>
+      <span class="crew-status"><span class="dot" aria-hidden="true"></span>Conectado</span>
     </li>`;
   }
 
@@ -173,31 +200,44 @@
     const filtered =
       state.filter === 'vip' ? vip : state.filter === 'normal' ? normal : all;
 
-    els.countAll.textContent = all.length;
-    els.countVip.textContent = vip.length;
-    els.countNormal.textContent = normal.length;
-    els.crewCount.textContent = pad2(all.length);
-    els.heroCrew.textContent = pad2(all.length);
+    animateCount(els.countAll, all.length, false);
+    animateCount(els.countVip, vip.length, false);
+    animateCount(els.countNormal, normal.length, false);
+    animateCount(els.crewCount, all.length);
+    animateCount(els.heroCrew, all.length);
 
     if (!filtered.length) {
       els.crewList.innerHTML = '';
       els.crewState.hidden = false;
+      state.crewSig = '';
       if (!all.length) {
         els.crewState.innerHTML = stateBlock(
-          'Todavía no hay nadie en cubierta.',
-          'Tu nombre puede ser el primero en el manifiesto.',
-          '<a class="state-link" href="#embarque">Empezar el embarque</a>'
+          'Todavía no hay sub-bots conectados.',
+          'Sé el primero en aparecer en la lista.',
+          '<a class="state-link" href="#embarque">Conectar ahora</a>',
+          'inbox'
         );
       } else {
         const label = state.filter === 'vip' ? 'VIP' : 'normales';
         els.crewState.innerHTML = stateBlock(
-          `No hay sub-bots ${label} a bordo.`,
-          'Prueba con otro filtro o actualiza el manifiesto.',
-          '<button type="button" class="state-link" data-filter-reset>Todos los rangos</button>'
+          `No hay sub-bots ${label} conectados.`,
+          'Prueba con otro filtro o actualiza la lista.',
+          '<button type="button" class="state-link" data-filter-reset>Todos los rangos</button>',
+          'search'
         );
       }
       return;
     }
+
+    const sig =
+      state.filter +
+      '|' +
+      filtered.map((member) => [member.name, member.number, member.vip, member.pic].join('~')).join('|');
+    if (sig === state.crewSig) {
+      els.crewState.hidden = true;
+      return;
+    }
+    state.crewSig = sig;
 
     els.crewState.hidden = true;
     els.crewList.innerHTML = filtered.map(crewRowHTML).join('');
@@ -226,9 +266,10 @@
       if (!state.crewLoaded) {
         els.crewState.hidden = false;
         els.crewState.innerHTML = stateBlock(
-          'No se pudo abrir el manifiesto.',
+          'No se pudo cargar la lista.',
           'Revisa tu conexión e inténtalo de nuevo.',
-          '<button type="button" class="state-link" data-retry-crew>Reintentar</button>'
+          '<button type="button" class="state-link" data-retry-crew>Reintentar</button>',
+          'alert'
         );
         els.crewCount.textContent = '—';
         els.heroCrew.textContent = '—';
@@ -254,7 +295,7 @@
 
   els.crewState.addEventListener('click', (event) => {
     if (event.target.closest('[data-retry-crew]')) {
-      els.crewState.innerHTML = '<p class="is-loading">Pasando lista…</p>';
+      els.crewState.innerHTML = '<p class="is-loading">Cargando sub-bots…</p>';
       loadCrew();
     }
     if (event.target.closest('[data-filter-reset]')) {
@@ -268,6 +309,7 @@
     els.scanEmpty.hidden = view !== 'empty';
     els.scanLive.hidden = view !== 'live';
     els.scanDone.hidden = view !== 'done';
+    $('#scanFrame').classList.toggle('is-live', view === 'live');
   }
 
   function setFormMessage(message, kind = '') {
@@ -301,9 +343,9 @@
     stopPolling();
     els.scanElapsed.hidden = true;
     showScan('done');
-    setScanStatus('A bordo.', 'ok');
+    setScanStatus('Conectado.', 'ok');
     els.scanNote.textContent =
-      'Tu barco se reconecta solo si se cae. Ya apareces en el manifiesto.';
+      'Tu conexión se restaura sola si se cae. Ya apareces en la lista.';
     setFormMessage('');
     loadCrew({ manual: true });
   }
@@ -424,15 +466,27 @@
     if (!reviews.length) {
       els.reviews.innerHTML = '';
       els.reviewsState.hidden = false;
+      state.reviewsSig = '';
       els.reviewsState.innerHTML = stateBlock(
-        'La bitácora está en blanco.',
-        'Deja la primera entrada y cuéntanos cómo va tu barco.'
+        'Todavía no hay opiniones.',
+        'Deja la primera y cuéntanos cómo va tu experiencia.',
+        '',
+        'chat'
       );
       return;
     }
 
+    const sig = JSON.stringify(
+      reviews.map((review) => [review.name, review.message, review.reply, review.date])
+    );
+    if (sig === state.reviewsSig) {
+      els.reviewsState.hidden = true;
+      return;
+    }
+    state.reviewsSig = sig;
+
     els.reviewsState.hidden = true;
-    els.reviews.innerHTML = reviews.map((review) => {
+    els.reviews.innerHTML = reviews.map((review, index) => {
       const message = escapeHTML(review.message || '').replace(/\n/g, '<br>');
       const reply = review.reply
         ? `<div class="log-reply">
@@ -441,7 +495,7 @@
            </div>`
         : '';
 
-      return `<article class="log-entry">
+      return `<article class="log-entry" style="--i:${index}">
         <header class="log-who">
           <span class="log-date">${escapeHTML(review.date || 'Sin fecha')}</span>
           <h3 class="log-author">${escapeHTML(review.name || 'Anónimo')}</h3>
@@ -463,9 +517,10 @@
       if (state.reviewsLoaded) return;
       els.reviewsState.hidden = false;
       els.reviewsState.innerHTML = stateBlock(
-        'No se pudo abrir la bitácora.',
+        'No se pudieron cargar las opiniones.',
         'Revisa tu conexión e inténtalo de nuevo.',
-        '<button type="button" class="state-link" data-retry-reviews>Reintentar</button>'
+        '<button type="button" class="state-link" data-retry-reviews>Reintentar</button>',
+        'alert'
       );
       els.reviewCount.textContent = '—';
     }
@@ -479,7 +534,7 @@
 
   els.reviewsState.addEventListener('click', (event) => {
     if (!event.target.closest('[data-retry-reviews]')) return;
-    els.reviewsState.innerHTML = '<p class="is-loading">Abriendo la bitácora…</p>';
+    els.reviewsState.innerHTML = '<p class="is-loading">Cargando opiniones…</p>';
     loadReviews();
   });
 
@@ -489,17 +544,17 @@
     const message = els.revMsg.value.trim();
 
     if (!message) {
-      setReviewStatus('Escribe un mensaje antes de firmar.', 'error');
+      setReviewStatus('Escribe un mensaje antes de publicar.', 'error');
       els.revMsg.focus();
       return;
     }
     if (message.length > 500) {
-      setReviewStatus('La entrada es demasiado larga. Usa menos de 500 caracteres.', 'error');
+      setReviewStatus('El mensaje es demasiado largo. Usa menos de 500 caracteres.', 'error');
       return;
     }
 
     els.reviewBtn.disabled = true;
-    setReviewStatus('Firmando la entrada…');
+    setReviewStatus('Publicando…');
 
     try {
       await api('/api/reviews', {
@@ -508,10 +563,10 @@
         body: JSON.stringify({ name: name || 'Anónimo', message }),
       });
       els.revMsg.value = '';
-      setReviewStatus('Entrada firmada. Ya está en la bitácora.', 'ok');
+      setReviewStatus('Publicado. Ya aparece en la lista.', 'ok');
       await loadReviews();
     } catch {
-      setReviewStatus('No se pudo firmar la entrada. Inténtalo de nuevo.', 'error');
+      setReviewStatus('No se pudo publicar. Inténtalo de nuevo.', 'error');
     } finally {
       els.reviewBtn.disabled = false;
     }
@@ -519,6 +574,26 @@
 
   /* ---------- Boot ---------- */
 
+  function setupReveal() {
+    const targets = $$('[data-reveal]');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      targets.forEach((el) => el.classList.add('is-revealed'));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+    targets.forEach((el) => observer.observe(el));
+  }
+
+  setupReveal();
   showScan('empty');
   loadCrew();
   loadReviews();
