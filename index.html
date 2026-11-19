@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HOUSHOU MARINE — Sub-Bot VIP 👑</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,15 +11,15 @@
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(600px 400px at 15% 5%,#a855f733,transparent 60%),radial-gradient(700px 500px at 90% 20%,#00e5ff22,transparent 60%),radial-gradient(600px 500px at 50% 100%,#ff6ec41a,transparent 60%);pointer-events:none;z-index:0}
 .top{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:28px 16px 10px;text-align:center}
-.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:6px 12px;border-radius:100px;font-size:12px;letter-spacing:.5px;color:#cbd5e1}
+.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:6px 12px;border-radius:100px;font-size:12px;color:#cbd5e1}
 .pill i{width:7px;height:7px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;display:block;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .hero-avatar{width:108px;height:108px;border-radius:32px;object-fit:cover;margin:18px auto 10px;display:block;border:3px solid rgba(255,255,255,.2);box-shadow:0 20px 50px rgba(0,229,255,.35);transform:rotate(-2deg)}
-h1{font-family:'Outfit',sans-serif;font-size:clamp(32px,6vw,52px);line-height:.95;letter-spacing:-1px}
+h1{font-family:'Outfit',sans-serif;font-size:clamp(32px,6vw,52px);line-height:.95}
 h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .top p{color:#94a3b8;font-size:14px;margin-top:10px;line-height:1.6}
 .stats{display:flex;justify-content:center;gap:10px;margin:18px 0;flex-wrap:wrap}
-.stat{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(12px);padding:10px 14px;border-radius:14px;font-size:12px;text-align:center;flex:1;min-width:100px;max-width:150px}
+.stat{background:var(--card);border:1px solid var(--line);padding:10px 14px;border-radius:14px;font-size:12px;text-align:center;flex:1;min-width:100px;max-width:150px}
 .stat b{font-size:16px;display:block}
 .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:10px 16px 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
 @media(max-width:820px){.wrap{grid-template-columns:1fr!important}}
@@ -28,55 +27,63 @@ h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));
 .banner{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:16px}
 .card h2{font-family:'Outfit',sans-serif;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .card>p{color:#94a3b8;font-size:13px;margin:6px 0 14px;line-height:1.6}
-.vip-box{background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(168,85,247,.15));border:1px solid rgba(255,215,0,.35);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.vip-box{background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(168,85,247,.15));border:1px solid rgba(255,215,0,.35);border-radius:16px;padding:14px;display:flex;gap:12px;margin-bottom:16px}
 .vip-box b{color:var(--gold)}
 .vip-box span{font-size:13px;line-height:1.6;color:#e2e8f0}
 .vip-box small{color:#94a3b8}
-.field label{font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;font-weight:600;letter-spacing:.5px}
+.field label{font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;font-weight:600}
 input{width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;font-size:15px;outline:none;font-family:inherit;min-width:0}
-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.15)}
+input:focus{border-color:var(--cyan)}
 .btn{width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,var(--cyan),var(--violet));color:#fff;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
-.btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.6}
 .btn-ghost{background:rgba(255,255,255,.08);border:1px solid var(--line)}
 #qrBox{display:none;margin-top:16px;text-align:center;background:#fff;border-radius:18px;padding:16px}
 #qrImg{width:210px;height:210px;max-width:100%}
-#status{margin-top:12px;font-size:13px;color:#facc15;text-align:center;min-height:18px}
+#status{margin-top:12px;font-size:13px;color:#facc15;text-align:center}
 .success{color:#22c55e!important;font-weight:700}
 .error{color:#f87171!important}
 .steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
 @media(max-width:480px){.steps{grid-template-columns:1fr}}
 .step{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12px;color:#cbd5e1;line-height:1.5}
-.step b{color:#fff;display:block;font-size:13px}
+.step b{color:#fff;display:block}
 .list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto}
 .item{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:10px;min-width:0}
 .item img{width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0}
-.item b{font-size:14px;word-break:break-word}
+.item b{font-size:14px}
 .item small{font-size:11px;color:#94a3b8;display:block}
 .item span{font-size:11px;color:#22c55e}
 .badge{padding:5px 9px;border-radius:100px;font-size:11px;margin-left:auto;font-weight:800;white-space:nowrap;flex-shrink:0}
 .badge-vip{background:rgba(255,215,0,.15);color:var(--gold);border:1px solid rgba(255,215,0,.4)}
 .badge-normal{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid var(--line)}
-/* CHAT - ARREGLADO SIN IMAGEN ROTA */
+/* CHAT PUBLICO + RESEÑAS */
 .chat-card{grid-column:1 / -1;padding:0;overflow:hidden}
 .chat-head{display:flex;align-items:center;gap:12px;padding:16px 20px;background:linear-gradient(90deg,#0f172a,#1e1b4b);border-bottom:1px solid var(--line)}
 .chat-head img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan);flex-shrink:0}
 .chat-head b{font-size:15px}
 .chat-head small{color:#94a3b8;font-size:12px;display:block}
 .chat-head .dot{margin-left:auto;width:9px;height:9px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;flex-shrink:0}
-.chat-body{background:#0b141a;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:22px 22px;padding:16px 12px;min-height:360px;max-height:480px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:10px}
+.chat-body{background:#0b141a;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:22px 22px;padding:16px 12px;min-height:340px;max-height:460px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:10px}
 .msg{max-width:85%;padding:10px 12px 18px;border-radius:14px;position:relative;font-size:14px;line-height:1.5;box-shadow:0 2px 8px rgba(0,0,0,.2);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
 .msg-in{background:#fff;color:#111b21;align-self:flex-start;border-top-left-radius:4px}
 .msg-out{background:#d9fdd3;color:#111b21;align-self:flex-end;border-top-right-radius:4px}
-.msg b{font-size:12px;display:block;margin-bottom:3px;word-break:break-word}
+.msg b{font-size:12px;display:block;margin-bottom:3px}
 .msg-in b{color:#00a884}
 .msg-out b{color:#53bdeb}
-.msg .time{position:absolute;right:8px;bottom:4px;font-size:10px;color:#667781;display:flex;align-items:center;gap:3px}
+.msg .time{position:absolute;right:8px;bottom:4px;font-size:10px;color:#667781}
 .empty-chat{text-align:center;color:#fff;background:rgba(0,0,0,.5);padding:16px;border-radius:12px;font-size:13px}
 .chat-input{display:flex;gap:8px;padding:12px;background:#f0f2f5;align-items:center}
 .chat-input input{background:#fff;color:#111;border:none;border-radius:24px;padding:13px 14px;font-size:14px}
-.chat-input button{width:48px;height:48px;border-radius:50%;border:none;background:#00a884;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(0,168,132,.4)}
-.chat-input button:active{transform:scale(.95)}
+.chat-input button{width:48px;height:48px;border-radius:50%;border:none;background:#00a884;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.tabs{display:flex;gap:8px;padding:12px 12px 0;background:#0f172a}
+.tab{flex:1;padding:10px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-weight:700;font-size:13px;cursor:pointer}
+.tab.active{background:linear-gradient(90deg,var(--cyan),var(--violet));border:none}
+/* RESEÑAS - estilo lista, no chat */
+.review-item{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:14px}
+.review-item b{font-size:14px}
+.review-item small{color:#94a3b8;font-size:11px}
+.review-item p{color:#e2e8f0;font-size:14px;margin:6px 0;line-height:1.5;word-break:break-word}
+.review-reply{background:rgba(0,229,255,.12);border-left:3px solid var(--cyan);padding:10px;border-radius:10px;font-size:13px;margin-top:8px;line-height:1.5}
+.review-reply b{color:var(--cyan)}
 footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-size:12px;padding:0 16px}
 </style>
 </head>
@@ -88,7 +95,7 @@ footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-
 <p>Conecta tu número como Sub-Bot VIP escaneando el QR.<br>Reconexión automática, siempre activa, sin volver a escanear.</p>
 <div class="stats">
 <div class="stat"><b id="count">—</b>Sub-Bots activos</div>
-<div class="stat"><b>👑 VIP</b>Con reconexión</div>
+<div class="stat"><b id="chatCount">—</b>Mensajes en chat</div>
 <div class="stat"><b>⚡ 24/7</b>Siempre en línea</div>
 </div>
 </div>
@@ -96,11 +103,8 @@ footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-
 <div class="wrap">
 <div class="card">
 <img class="banner" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
-<div class="vip-box">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M2 8l5 2 5-6 5 6 5-2-3 9H5L2 8Z" fill="#FFD700"/><circle cx="7" cy="19" r="1.5" fill="#FFD700"/><circle cx="12" cy="19" r="1.5" fill="#FFD700"/><circle cx="17" cy="19" r="1.5" fill="#FFD700"/></svg>
-<span><b>WEB = VIP 👑</b><br>✅ Reconexión automática<br>✅ Siempre activo aunque se caiga<br><small>WhatsApp con .serbot = NORMAL, sin reconexión</small></span>
-</div>
-<h2><svg width="20" height="20" viewBox="0 0 24 24" fill="#00e5ff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.9 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4 0-.5.1-.6l.7-.8c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg> Conectarte como Sub-Bot VIP</h2>
+<div class="vip-box"><span><b>WEB = VIP 👑</b><br>✅ Reconexión automática<br>✅ Siempre activo aunque se caiga<br><small>WhatsApp con .serbot = NORMAL, sin reconexión</small></span></div>
+<h2>📱 Conectarte como Sub-Bot VIP</h2>
 <p>Escanea el código QR con tu WhatsApp y te convertirás en Sub-Bot VIP de Houshou Marine.</p>
 <div class="field"><label>TU NÚMERO CON CÓDIGO DE PAÍS</label><input id="number" type="tel" placeholder="51987654321"></div>
 <button class="btn" id="btn" onclick="getQR()">Generar QR VIP 👑</button>
@@ -115,35 +119,44 @@ footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-
 </div>
 
 <div class="card">
-<h2><svg width="20" height="20" viewBox="0 0 24 24" fill="#22c55e"><circle cx="12" cy="12" r="10" fill="#22c55e"/><circle cx="12" cy="12" r="4" fill="#fff"/></svg> Sub-Bots Conectados</h2>
-<p><b style="color:#ffd700">👑 = VIP</b> (Web, con reconexión) &nbsp;|&nbsp; <b>⚪ = NORMAL</b> (WhatsApp)</p>
+<h2>🟢 Sub-Bots Conectados</h2>
+<p><b style="color:#ffd700">👑 = VIP</b> (Web, con reconexión) | <b>⚪ = NORMAL</b> (WhatsApp)</p>
 <div id="list" class="list"><div style="color:#888;font-size:13px">Cargando...</div></div>
 <button class="btn btn-ghost" onclick="loadList()">🔄 Actualizar lista</button>
 </div>
 
+<!-- CHAT PUBLICO -->
 <div class="card chat-card">
 <div class="chat-head">
 <img src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
-<div style="min-width:0"><b>Houshou Marine - Reseñas</b><small>El Owner responde personalmente • En línea</small></div>
+<div style="min-width:0"><b>💬 Chat Público - Comunidad Marine</b><small>Habla con todos • Todos pueden escribir • En vivo</small></div>
 <span class="dot"></span>
 </div>
-<div class="chat-body" id="reviews">
-<div class="empty-chat">💬 Déjanos tu opinión abajo, el Owner te responde aquí mismo como en WhatsApp.</div>
-</div>
+<div class="chat-body" id="chatBody"><div class="empty-chat">💬 Sé el primero en escribir en el chat público. Converse con todos aquí.</div></div>
 <div class="chat-input">
-<input id="revName" placeholder="Tu nombre">
-<input id="revMsg" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter') sendReview()">
-<button onclick="sendReview()" title="Enviar"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2v7Z"/></svg></button>
-</div>
+<input id="chatName" placeholder="Tu nombre" style="max-width:130px">
+<input id="chatMsg" placeholder="Escribe para todos..." onkeydown="if(event.key==='Enter') sendChat()">
+<button onclick="sendChat()"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2v7Z"/></svg></button>
 </div>
 </div>
 
+<!-- RESEÑAS APARTE -->
+<div class="card" style="grid-column:1 / -1">
+<h2>⭐ Reseñas, Dudas y Preguntas</h2>
+<p>Déjanos tu opinión, duda o pregunta. <b style="color:#00e5ff">Solo el Owner responde aquí.</b> No es chat, es para reseñas.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="revName" placeholder="Tu nombre" style="flex:1;min-width:140px"><input id="revMsg" placeholder="Tu reseña, duda o pregunta..." style="flex:2;min-width:200px" onkeydown="if(event.key==='Enter') sendReview()"><button class="btn" onclick="sendReview()" style="margin:0;width:auto;padding:14px 20px;white-space:nowrap">Enviar ⭐</button></div>
+<div id="reviews" style="margin-top:16px;display:flex;flex-direction:column;gap:10px"></div>
+</div>
+
+</div>
 <footer>© Powered by DevsOpp 2020 - 2026 | HOUSHOU MARINE - AI | All rights reserved</footer>
 
 <script>
 const API_URL = "";
 const IMG_DEFAULT = "https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg";
 let qrInterval=null, statusInterval=null;
+let myName = localStorage.getItem('marine_name') || '';
+if(myName){ document.getElementById('chatName').value = myName; document.getElementById('revName').value = myName; }
 async function getQR(){
   const number=document.getElementById('number').value.replace(/[^0-9]/g,'');
   if(number.length<8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
@@ -171,28 +184,55 @@ async function loadList(){
   }catch(e){ document.getElementById('list').innerHTML='Error al cargar lista'; }
 }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+// CHAT PUBLICO
+async function loadChat(){
+  try{
+    const r=await fetch(API_URL+'/api/chat'); const d=await r.json();
+    const box=document.getElementById('chatBody');
+    document.getElementById('chatCount').textContent=d.chat?.length||0;
+    if(!d.chat?.length){ box.innerHTML='<div class="empty-chat">💬 Sé el primero en escribir. Habla con toda la comunidad Marine.</div>'; return; }
+    let my = document.getElementById('chatName').value.trim();
+    box.innerHTML=d.chat.slice(-60).map(x=>{
+      let isMe = my && x.name===my;
+      return `<div class="msg ${isMe?'msg-out':'msg-in'}"><b>${esc(x.name)} ${isMe?'(Tú)':''}</b>${esc(x.message)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>`;
+    }).join('');
+    box.scrollTop=box.scrollHeight;
+  }catch{}
+}
+async function sendChat(){
+  const name=document.getElementById('chatName').value.trim()||'Anónimo';
+  const message=document.getElementById('chatMsg').value.trim();
+  if(!message) return alert('Escribe algo');
+  localStorage.setItem('marine_name', name);
+  document.getElementById('revName').value=name;
+  await fetch(API_URL+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});
+  document.getElementById('chatMsg').value='';
+  loadChat();
+}
+// RESEÑAS
 async function loadReviews(){
   try{
     const r=await fetch(API_URL+'/api/reviews'); const d=await r.json();
     const box=document.getElementById('reviews');
-    if(!d.reviews?.length){ box.innerHTML='<div class="empty-chat">💬 Sin reseñas aún, sé el primero en escribirle a Houshou Marine.</div>'; return; }
-    box.innerHTML=d.reviews.slice(0,20).reverse().map(x=>`
-      <div class="msg msg-in"><b>${esc(x.name)}</b>${esc(x.message)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>
-      ${x.reply?`<div class="msg msg-out"><b>👑 HOUSHOU MARINE - Owner</b>${esc(x.reply)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>`:`<div class="msg msg-out" style="opacity:.6"><b>👑 HOUSHOU MARINE</b><i>Escribiendo...</i></div>`}
-    `).join('');
-    box.scrollTop=box.scrollHeight;
+    if(!d.reviews?.length){ box.innerHTML='<div style="color:#888;font-size:13px">Sin reseñas aún, sé el primero.</div>'; return; }
+    box.innerHTML=d.reviews.slice(0,20).map(x=>`
+      <div class="review-item"><b>${esc(x.name)}</b> <small>${esc(x.date)}</small><p>${esc(x.message)}</p>
+      ${x.reply?`<div class="review-reply"><b>👑 Owner responde:</b><br>${esc(x.reply)}</div>`:`<small style="color:#facc15">⏳ Esperando respuesta del Owner...</small>`}
+      </div>`).join('');
   }catch{}
 }
 async function sendReview(){
-  const name=document.getElementById('revName').value||'Anónimo';
+  const name=document.getElementById('revName').value.trim()||'Anónimo';
   const message=document.getElementById('revMsg').value.trim();
-  if(!message) return alert('Escribe algo');
+  if(!message) return alert('Escribe tu reseña, duda o pregunta');
+  localStorage.setItem('marine_name', name);
+  document.getElementById('chatName').value=name;
   await fetch(API_URL+'/api/reviews',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});
   document.getElementById('revMsg').value='';
   loadReviews();
 }
-loadList(); loadReviews();
-setInterval(loadList,15000); setInterval(loadReviews,8000);
+loadList(); loadChat(); loadReviews();
+setInterval(loadList,15000); setInterval(loadChat,3000); setInterval(loadReviews,8000);
 </script>
 </body>
 </html>
