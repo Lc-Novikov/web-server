@@ -832,15 +832,17 @@ h1 em, h2 em {
 .scan-live { width: 100%; display: grid; place-items: center; }
 .qr-well {
   position: relative;
+  width: min(100%, 256px);
   padding: 12px;
   background: #fff;
   box-shadow: 0 8px 22px rgba(19, 42, 47, 0.14);
   overflow: hidden;
 }
 .qr-well img {
-  width: 232px;
-  height: 232px;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-width: 232px;
+  aspect-ratio: 1;
   object-fit: contain;
   image-rendering: pixelated;
 }
@@ -1597,8 +1599,7 @@ h1 em, h2 em {
   .perforation { margin-left: 18px; margin-right: 18px; }
   .embark-grid { gap: 26px; }
   .station { padding: 12px; }
-  .scan { min-height: 250px; }
-  .qr-well img { width: 210px; height: 210px; }
+  .scan { min-height: 250px; padding: 12px; }
   .steps { grid-template-columns: 1fr; }
   .steps li,
   .steps li:nth-child(even) { padding: 16px 0; border-left: 0; border-bottom: 1px solid var(--line); }
