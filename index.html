@@ -164,6 +164,7 @@ const IMG_DEFAULT = "https://raw.githubusercontent.com/starlyn-chann/Mistic-star
 let statusInterval=null;
 let countdownInterval=null;
 let secondsLeft=60;
+let pairingEnCurso = false;
 let myName = localStorage.getItem('marine_name') || '';
 if(myName){ document.getElementById('chatName').value = myName; document.getElementById('revName').value = myName; }
 
@@ -178,16 +179,12 @@ function startCountdown(){
     if(secondsLeft < 0) secondsLeft = 0;
     document.getElementById('countdown').textContent = secondsLeft;
     document.getElementById('countFill').style.width = (secondsLeft / 60 * 100) + '%';
-    if(secondsLeft <= 10){
-      document.getElementById('countdown').style.color = '#dc2626';
-    } else {
-      document.getElementById('countdown').style.color = '#dc2626';
-    }
     if(secondsLeft <= 0){
       clearInterval(countdownInterval);
       document.getElementById('expiredMsg').style.display = 'block';
       document.getElementById('status').textContent = '❌ Código vencido, genera uno nuevo';
       document.getElementById('status').className = 'error';
+      pairingEnCurso = false;
       document.getElementById('btnCode').disabled = false;
       document.getElementById('btnCode').textContent = '🔑 Generar Código Nuevo';
     }
@@ -195,17 +192,19 @@ function startCountdown(){
 }
 
 async function getPairingCode(){
+  if (pairingEnCurso) { console.log('Ya se esta pidiendo codigo, no mando otro'); return; }
   const number=document.getElementById('number').value.replace(/[^0-9]/g,'');
   if(number.length<8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
+  pairingEnCurso = true;
   document.getElementById('btnCode').disabled=true;
-  document.getElementById('btnCode').textContent='Generando código...';
-  document.getElementById('status').textContent='Generando código de 8 dígitos...';
+  document.getElementById('btnCode').textContent='Generando código... espera 10s, NO le des otra vez';
+  document.getElementById('status').textContent='Generando código de 8 dígitos... espera, NO le des otra vez';
   document.getElementById('status').className='';
   try{
     const res=await fetch(API_URL+'/api/pairing',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({number})});
     const data=await res.json();
     if(data.error) throw new Error(data.error);
-    if(data.already){ document.getElementById('status').textContent='✅ Ya estaba conectado'; document.getElementById('status').className='success'; document.getElementById('btnCode').disabled=false; document.getElementById('btnCode').textContent='🔑 Generar Código VIP 👑'; loadList(); return; }
+    if(data.already){ document.getElementById('status').textContent='✅ Ya estaba conectado'; document.getElementById('status').className='success'; pairingEnCurso=false; document.getElementById('btnCode').disabled=false; document.getElementById('btnCode').textContent='🔑 Generar Código VIP 👑'; loadList(); return; }
     document.getElementById('codeBox').style.display='block';
     document.getElementById('pairCode').textContent=data.code;
     document.getElementById('status').textContent='Pon ese código en WhatsApp, se conecta solo';
@@ -220,12 +219,15 @@ async function getPairingCode(){
         document.getElementById('status').textContent='✅ CONECTADO COMO SUB-BOT VIP 👑';
         document.getElementById('status').className='success';
         document.getElementById('codeBox').style.display='none';
+        pairingEnCurso=false;
         document.getElementById('btnCode').disabled=false;
         document.getElementById('btnCode').textContent='🔑 Generar Código VIP 👑';
         loadList();
       }
     },3000);
+    setTimeout(()=>{ if(pairingEnCurso && !document.getElementById('status').textContent.includes('CONECTADO')){ pairingEnCurso=false; document.getElementById('btnCode').disabled=false; document.getElementById('btnCode').textContent='🔑 Generar Código Nuevo'; } }, 70000);
   }catch(e){
+    pairingEnCurso=false;
     document.getElementById('status').textContent='Error: '+e.message;
     document.getElementById('status').className='error';
     document.getElementById('btnCode').disabled=false;
