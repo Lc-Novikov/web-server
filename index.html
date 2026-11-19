@@ -3,160 +3,380 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HOUSHOU MARINE - Conectar Sub-Bot VIP</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#07070d;color:#fff;min-height:100vh;padding:20px;background-image:radial-gradient(circle at 20% 20%, #1a0b2e 0%, transparent 50%),radial-gradient(circle at 80% 80%, #001a2e 0%, transparent 50%)}
-.top{max-width:900px;margin:0 auto;text-align:center;padding:20px 0}
-.logo{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #00d4ff;box-shadow:0 0 30px #00d4ff88;margin-bottom:10px}
-h1{font-size:28px;background:linear-gradient(90deg,#00d4ff,#a855f7,#ff6ec4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.top p{color:#aaa;font-size:14px;margin-top:6px}
-.wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:700px){.wrap{grid-template-columns:1fr}}
-.card{background:#12121f;border:1px solid #2a2a3a;border-radius:20px;padding:24px}
-.card h2{font-size:18px;margin-bottom:8px;color:#00d4ff}
-.card p{color:#aaa;font-size:13px;margin-bottom:16px;line-height:1.6}
-input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#07070d;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
-button{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,#00d4ff,#a855f7);color:#fff;font-weight:bold;font-size:16px;cursor:pointer}
-button:disabled{opacity:.5}
-#qrBox{display:none;margin-top:16px;text-align:center;background:#fff;border-radius:16px;padding:16px}
-#qrImg{width:230px;height:230px;max-width:100%}
-#status{margin-top:14px;font-size:13px;color:#ffcc00;text-align:center}
-.success{color:#00ff88!important}
-.error{color:#ff5555!important}
-ol{text-align:left;font-size:12px;color:#aaa;margin-top:14px;line-height:1.8;padding-left:18px}
-.list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto}
-.item{display:flex;align-items:center;gap:12px;background:#0a0a14;border:1px solid #222;border-radius:14px;padding:10px}
-.item img{width:48px;height:48px;border-radius:50%;object-fit:cover}
-.item b{font-size:14px}
-.item span{font-size:12px;color:#00ff88}
-.item small{font-size:11px;color:#aaa;display:block}
-.badge{padding:3px 8px;border-radius:20px;font-size:11px;margin-left:auto}
-.badge-vip{background:#ffd70022;color:#ffd700;border:1px solid #ffd700}
-.badge-normal{background:#88888822;color:#aaa;border:1px solid #555}
-.banner{width:100%;height:140px;object-fit:cover;border-radius:16px;margin-bottom:16px;border:1px solid #2a2a3a}
-.vip-box{background:linear-gradient(90deg,#ffd70022,#a855f722);border:1px solid #ffd70055;border-radius:12px;padding:12px;margin-bottom:14px;font-size:13px;line-height:1.6}
-footer{max-width:900px;margin:20px auto;text-align:center;color:#555;font-size:12px}
-</style>
+<title>Houshou Marine · Sub-Bot VIP</title>
+<meta name="description" content="Sube tu WhatsApp a bordo como Sub-Bot VIP de Houshou Marine. Escanea un código QR, conecta tu número y navega con reconexión automática.">
+<meta name="theme-color" content="#061f26">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Houshou Marine · Sub-Bot VIP">
+<meta property="og:description" content="Una conexión, reconexión automática y una tripulación que no deja barcos a la deriva.">
+<meta property="og:image" content="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/Newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Archivo-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<div class="top">
-<img class="logo" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg" alt="Houshou Marine">
-<h1>HOUSHOU MARINE - AI</h1>
-<p>Conecta tu número como Sub-Bot VIP escaneando el QR<br>Red oficial de Sub-Bots • DevsOpp</p>
-</div>
-<div class="wrap">
-<div class="card">
-<img class="banner" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg" alt="Houshou Marine Banner">
-<div class="vip-box">👑 <b>WEB = VIP</b><br>✅ Reconexión automática<br>✅ Siempre activo aunque se caiga<br>⚪ WhatsApp con .serbot = NORMAL, sin reconexión</div>
-<h2>📱 Conectarte como Sub-Bot VIP</h2>
-<p>Escanea el código QR con tu WhatsApp y te convertirás en Sub-Bot VIP de Houshou Marine.</p>
-<input id="number" type="tel" placeholder="51987654321 - con código de país">
-<button id="btn" onclick="getQR()">Generar QR VIP 👑</button>
-<div id="qrBox"><img id="qrImg" src=""><div style="font-size:12px;color:#333;margin-top:8px">Escanea en WhatsApp > Dispositivos vinculados</div></div>
-<div id="status"></div>
-<ol>
-<li>Pon tu número y genera el QR</li>
-<li>En WhatsApp: 3 puntos > Dispositivos vinculados</li>
-<li>Escanea el QR en menos de 45 segundos</li>
-<li>Si expira, dale de nuevo a Generar QR</li>
-<li>No cierres esta página hasta que diga Conectado</li>
-</ol>
-</div>
-<div class="card">
-<h2>🟢 Sub-Bots Conectados</h2>
-<p>👑 = VIP (Web, con reconexión) | ⚪ = NORMAL (WhatsApp)</p>
-<div id="list" class="list"><div style="color:#888;font-size:13px">Cargando...</div></div>
-<button onclick="loadList()" style="margin-top:12px;background:#222">🔄 Actualizar lista</button>
-</div>
-<div class="card" style="grid-column:1 / -1">
-<h2>💬 Reseñas y Opiniones</h2>
-<p>Déjanos tu opinión sobre Houshou Marine. El Owner responde personalmente.</p>
-<input id="revName" placeholder="Tu nombre o número">
-<input id="revMsg" placeholder="Escribe tu opinión, duda o sugerencia...">
-<button onclick="sendReview()">Enviar Reseña</button>
-<div id="reviews" style="margin-top:16px;display:flex;flex-direction:column;gap:10px"></div>
-</div>
-</div>
-<footer>© Powered by DevsOpp 2020 - 2026 | HOUSHOU MARINE - AI | All rights reserved</footer>
-<script>
-const API_URL = "";
-const IMG_DEFAULT = "https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg";
-let qrInterval = null, statusInterval = null;
-async function getQR(){
-  const number = document.getElementById('number').value.replace(/[^0-9]/g,'');
-  if(number.length < 8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
-  document.getElementById('btn').disabled = true;
-  document.getElementById('status').textContent = 'Generando QR VIP...';
-  document.getElementById('status').className = '';
-  try{
-    const res = await fetch(API_URL + '/api/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number})});
-    const data = await res.json();
-    if(data.error) throw new Error(data.error);
-    document.getElementById('qrBox').style.display = 'block';
-    document.getElementById('status').textContent = 'Escanea el QR ahora, se actualiza solo si expira';
-    if(qrInterval) clearInterval(qrInterval);
-    if(statusInterval) clearInterval(statusInterval);
-    const fetchQR = async ()=>{
-      const r = await fetch(API_URL + '/api/qr?number=' + number);
-      const s = await r.json();
-      if(s.qr) document.getElementById('qrImg').src = s.qr;
-    };
-    fetchQR();
-    qrInterval = setInterval(fetchQR, 3000);
-    statusInterval = setInterval(async ()=>{
-      const r = await fetch(API_URL + '/api/status?number=' + number);
-      const s = await r.json();
-      if(s.connected){
-        clearInterval(qrInterval); clearInterval(statusInterval);
-        document.getElementById('status').textContent = '✅ CONECTADO COMO SUB-BOT VIP 👑';
-        document.getElementById('status').className = 'success';
-        document.getElementById('btn').disabled = false;
-        loadList();
-      }
-    }, 3000);
-  }catch(e){
-    document.getElementById('status').textContent = 'Error: ' + e.message;
-    document.getElementById('status').className = 'error';
-    document.getElementById('btn').disabled = false;
-  }
-}
-async function loadList(){
-  try{
-    const r = await fetch(API_URL + '/api/list');
-    const data = await r.json();
-    const box = document.getElementById('list');
-    if(!data.list || !data.list.length){ box.innerHTML = '<div style="color:#888;font-size:13px">Aún no hay Sub-Bots conectados. Sé el primero.</div>'; return; }
-    box.innerHTML = data.list.map(u => `
-      <div class="item">
-        <img src="${u.pic || IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'">
-        <div><b>${u.name || 'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div>
-        <span class="badge ${u.vip ? 'badge-vip' : 'badge-normal'}">${u.vip ? '👑 VIP' : '⚪ NORMAL'}</span>
-      </div>`).join('');
-  }catch(e){ document.getElementById('list').innerHTML = 'Error al cargar lista'; }
-}
-async function loadReviews(){
-  try{
-    const r = await fetch(API_URL + '/api/reviews'); const d = await r.json();
-    document.getElementById('reviews').innerHTML = d.reviews.map(x => `
-      <div style="background:#0a0a14;border:1px solid #222;border-radius:12px;padding:12px">
-        <b>${x.name}</b> <small style="color:#888">${x.date}</small>
-        <p style="color:#ddd;margin:6px 0">${x.message}</p>
-        ${x.reply ? `<div style="background:#00d4ff22;border-left:3px solid #00d4ff;padding:8px;border-radius:8px"><b style="color:#00d4ff">👑 Owner:</b> ${x.reply}</div>` : '<small style="color:#ffcc00">Esperando respuesta del Owner...</small>'}
-      </div>`).join('') || 'Sin reseñas aún, sé el primero.';
-  }catch{}
-}
-async function sendReview(){
-  const name = document.getElementById('revName').value || 'Anónimo';
-  const message = document.getElementById('revMsg').value;
-  if(!message) return alert('Escribe algo');
-  await fetch(API_URL + '/api/reviews', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name, message})});
-  document.getElementById('revMsg').value = '';
-  loadReviews();
-}
-loadList(); loadReviews();
-setInterval(loadList, 15000);
-setInterval(loadReviews, 15000);
-</script>
+
+<a class="skip-link" href="#embarque">Saltar al embarque</a>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="#top" aria-label="Houshou Marine, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="12" cy="5.2" r="2.1"/>
+          <path d="M12 7.6V19"/>
+          <path d="M8.1 10.4h7.8"/>
+          <path d="M12 19c-3.3 0-5.5-2.3-5.9-5.3M12 19c3.3 0 5.5-2.3 5.9-5.3"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">Houshou Marine</span>
+        <span class="brand-sub">Red de sub-bots</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Secciones">
+      <a href="#embarque">Embarque</a>
+      <a href="#tripulacion">Tripulación</a>
+      <a href="#bitacora">Bitácora</a>
+    </nav>
+
+    <p class="net" id="net" data-state="checking" aria-live="polite">
+      <span class="net-dot" aria-hidden="true"></span>
+      <span id="netText">Comprobando señal</span>
+    </p>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-contours" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M-80 690C160 610 320 760 560 700S980 540 1160 610s260 70 360 10"/>
+        <path d="M-80 725C160 645 320 795 560 735S980 575 1160 645s260 70 360 10"/>
+        <path d="M-80 760C160 680 320 830 560 770S980 610 1160 680s260 70 360 10"/>
+        <path d="M-40 140C120 90 260 210 420 170S720 40 900 90s300 90 460 40"/>
+        <path d="M-40 176C120 126 260 246 420 206S720 76 900 126s300 90 460 40"/>
+      </svg>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>Red oficial de sub-bots por DevsOpp</p>
+        <h1 id="hero-title">Ahoy,<br><em>navegante.</em></h1>
+        <p class="hero-lede">Sube tu WhatsApp a bordo como <strong>Sub-Bot VIP</strong> de Houshou Marine. Una conexión, reconexión automática y una tripulación que no deja barcos a la deriva.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#embarque">Empezar el embarque</a>
+          <a class="btn btn-ghost" href="#tripulacion">Ver la tripulación</a>
+        </div>
+        <dl class="hero-facts">
+          <div>
+            <dt>VIP</dt>
+            <dd>Web, siempre a flote</dd>
+          </div>
+          <div>
+            <dt>Normal</dt>
+            <dd>Desde WhatsApp con <code>.serbot</code></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-visual">
+        <div class="compass" aria-hidden="true">
+          <svg viewBox="0 0 520 520">
+            <g class="compass-rings">
+              <circle cx="260" cy="260" r="252"/>
+              <circle cx="260" cy="260" r="246" class="ring-dash"/>
+              <circle cx="260" cy="260" r="238" class="ring-ticks"/>
+              <circle cx="260" cy="260" r="230"/>
+            </g>
+            <g class="compass-grid">
+              <circle cx="260" cy="260" r="176"/>
+              <circle cx="260" cy="260" r="124"/>
+              <circle cx="260" cy="260" r="72"/>
+            </g>
+
+            <g class="compass-rose">
+              <g class="rose-outline">
+                <path d="M260,62 L233,260 L260,260 Z"/><path d="M260,62 L260,260 L287,260 Z"/>
+                <path d="M357.6,162.4 L247.3,247.3 L260,260 Z"/><path d="M357.6,162.4 L260,260 L272.7,272.7 Z"/>
+                <path d="M458,260 L260,233 L260,260 Z"/><path d="M458,260 L260,260 L260,287 Z"/>
+                <path d="M357.6,357.6 L272.7,247.3 L260,260 Z"/><path d="M357.6,357.6 L260,260 L247.3,272.7 Z"/>
+                <path d="M260,458 L287,260 L260,260 Z"/><path d="M260,458 L260,260 L233,260 Z"/>
+                <path d="M162.4,357.6 L272.7,272.7 L260,260 Z"/><path d="M162.4,357.6 L260,260 L247.3,247.3 Z"/>
+                <path d="M62,260 L260,287 L260,260 Z"/><path d="M62,260 L260,260 L260,233 Z"/>
+                <path d="M162.4,162.4 L247.3,272.7 L260,260 Z"/><path d="M162.4,162.4 L260,260 L272.7,247.3 Z"/>
+              </g>
+              <circle class="rose-core" cx="260" cy="260" r="40"/>
+              <circle class="rose-core-line" cx="260" cy="260" r="33"/>
+              <g class="rose-anchor" transform="translate(241.5 242) scale(1.55)">
+                <circle cx="12" cy="5.2" r="2.1"/>
+                <path d="M12 7.6V19"/>
+                <path d="M8.1 10.4h7.8"/>
+                <path d="M12 19c-3.3 0-5.5-2.3-5.9-5.3M12 19c3.3 0 5.5-2.3 5.9-5.3"/>
+              </g>
+            </g>
+
+            <g class="compass-points">
+              <circle cx="349" cy="170" r="3.2" class="blip-brass"/>
+              <circle cx="196" cy="354" r="3.2" class="blip-red"/>
+              <circle cx="341" cy="356" r="2.4" class="blip-paper"/>
+            </g>
+
+            <g class="cardinal">
+              <text x="260" y="55" text-anchor="middle">N</text>
+              <text x="470" y="265" text-anchor="middle">E</text>
+              <text x="260" y="475" text-anchor="middle">S</text>
+              <text x="50" y="265" text-anchor="middle">W</text>
+            </g>
+          </svg>
+        </div>
+
+        <figure class="seal">
+          <svg class="seal-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <path id="sealArc" d="M100,100 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/>
+            </defs>
+            <circle cx="100" cy="100" r="98"/>
+            <text>
+              <textPath href="#sealArc" startOffset="50%" text-anchor="middle">HOUSHOU MARINE · SUB-BOT VIP · RED OFICIAL ·</textPath>
+            </text>
+          </svg>
+          <img src="assets/img/marine-480.webp" width="480" height="480" alt="Houshou Marine" loading="eager">
+        </figure>
+
+        <p class="tally">
+          <span class="tally-label">Tripulantes a bordo</span>
+          <span class="tally-value" id="heroCrew">—</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-strip" aria-hidden="true">
+      <span>Carta de embarque: Sub-Bot VIP</span>
+      <span>35°21′N&nbsp;&nbsp;&nbsp;139°38′E</span>
+      <span>Edición 2026</span>
+    </div>
+  </section>
+
+  <div class="sheet-wrap">
+    <div class="sheet">
+
+      <section class="section embark" id="embarque" aria-labelledby="embarque-title">
+        <div class="section-head">
+          <p class="folio"><span class="folio-num">01</span>Embarque</p>
+          <h2 id="embarque-title">Reserva tu plaza<br><em>en cubierta</em></h2>
+          <p class="section-lede">Añade tu número, genera el código y escanéalo desde WhatsApp. En menos de un minuto estarás en la red.</p>
+        </div>
+
+        <div class="embark-grid">
+          <form class="connect" id="connectForm" novalidate>
+            <div class="field" id="numberField">
+              <label for="number">Número de WhatsApp <span class="optional">obligatorio</span></label>
+              <div class="phone">
+                <span class="phone-plus" aria-hidden="true">+</span>
+                <input id="number" name="number" type="tel" inputmode="numeric" autocomplete="tel" placeholder="51 987 654 321" aria-describedby="numberHint formMsg" spellcheck="false" maxlength="20" required>
+              </div>
+              <p class="hint" id="numberHint">Incluye el código de país. Por ejemplo: 51 987 654 321.</p>
+            </div>
+
+            <button class="btn btn-primary btn-block" id="generateBtn" type="submit">Generar código QR</button>
+            <p class="form-note">Mantén esta página abierta hasta que tu barco aparezca en el manifiesto.</p>
+            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+
+            <div class="vip-includes">
+              <p class="vip-title">Tu plaza VIP incluye</p>
+              <ul>
+                <li><strong>Reconexión automática.</strong> Si la conexión se cae, tu barco vuelve solo.</li>
+                <li><strong>Rango VIP.</strong> Tu número aparece con corona en el manifiesto.</li>
+                <li><strong>Sin comandos.</strong> Todo se hace desde esta página con el QR.</li>
+              </ul>
+            </div>
+          </form>
+
+          <div class="station" role="group" aria-labelledby="station-title">
+            <div class="station-top">
+              <h3 id="station-title">Estación de escaneo</h3>
+              <span class="station-code">QR / 01</span>
+            </div>
+            <div class="scan" id="scanFrame">
+              <div class="scan-empty" id="scanEmpty">
+                <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true">
+                  <circle cx="12" cy="5.2" r="2.1"/>
+                  <path d="M12 7.6V19"/>
+                  <path d="M8.1 10.4h7.8"/>
+                  <path d="M12 19c-3.3 0-5.5-2.3-5.9-5.3M12 19c3.3 0 5.5-2.3 5.9-5.3"/>
+                </svg>
+                <p>Tu código aparecerá aquí.</p>
+                <small>Escribe tu número y pulsa Generar.</small>
+              </div>
+
+              <div class="scan-live" id="scanLive" hidden>
+                <div class="qr-well">
+                  <img id="qrImg" alt="Código QR para vincular tu WhatsApp" width="232" height="232">
+                  <span class="scanline" aria-hidden="true"></span>
+                </div>
+              </div>
+
+              <div class="scan-done" id="scanDone" hidden>
+                <span class="stamp">A bordo</span>
+                <p>Tu número ya navega en la red.</p>
+              </div>
+            </div>
+
+            <p class="station-status" id="scanStatus">
+              <span id="scanText" aria-live="polite">Esperando un número.</span>
+              <span class="scan-elapsed" id="scanElapsed" hidden>00:00</span>
+            </p>
+            <p class="station-note" id="scanNote">El código se renueva solo si caduca. Escanea en WhatsApp → Dispositivos vinculados.</p>
+          </div>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span class="step-num">01</span>
+            <h3>Marca tu rumbo</h3>
+            <p>Escribe tu número con el código de país.</p>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <h3>Pide el código</h3>
+            <p>Pulsa Generar y espera el QR en la estación.</p>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <h3>Abre WhatsApp</h3>
+            <p>Ajustes → Dispositivos vinculados → Vincular dispositivo.</p>
+          </li>
+          <li>
+            <span class="step-num">04</span>
+            <h3>Escanea y espera</h3>
+            <p>Cuando diga «A bordo», tu barco ya está en la red.</p>
+          </li>
+        </ol>
+      </section>
+
+      <hr class="perforation" aria-hidden="true">
+
+      <section class="section manifest" id="tripulacion" aria-labelledby="manifest-title">
+        <div class="manifest-head">
+          <div>
+            <p class="folio"><span class="folio-num">02</span>Manifiesto</p>
+            <h2 id="manifest-title">La tripulación</h2>
+          </div>
+          <div class="manifest-stats" id="manifestStats">
+            <p class="stat"><span id="crewCount">—</span> <span class="stat-label">sub-bots a bordo</span></p>
+            <p class="updated" id="updatedAt" aria-live="polite">Actualizando…</p>
+          </div>
+        </div>
+
+        <div class="manifest-bar">
+          <div class="filters" role="group" aria-label="Filtrar por rango">
+            <button type="button" data-filter="all" aria-pressed="true">Todos <span id="countAll">—</span></button>
+            <button type="button" data-filter="vip" aria-pressed="false">VIP <span id="countVip">—</span></button>
+            <button type="button" data-filter="normal" aria-pressed="false">Normales <span id="countNormal">—</span></button>
+          </div>
+          <button class="refresh" id="refreshBtn" type="button">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 11a8 8 0 1 0-2.3 5.7"/>
+              <path d="M20 4v7h-7"/>
+            </svg>
+            Actualizar
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="crew-head" aria-hidden="true">
+            <span>Nº</span>
+            <span>Tripulante</span>
+            <span>Contacto</span>
+            <span>Rango</span>
+            <span>Estado</span>
+          </div>
+          <ol class="crew" id="crewList"></ol>
+          <div class="crew-state" id="crewState">
+            <p class="is-loading">Pasando lista…</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <section class="logbook" id="bitacora" aria-labelledby="log-title">
+    <div class="logbook-inner">
+      <div class="logbook-head">
+        <p class="folio folio-light"><span class="folio-num">03</span>Bitácora</p>
+        <h2 id="log-title">Voces <em>desde cubierta</em></h2>
+        <p class="section-lede">Opiniones, dudas y avisos de la tripulación. El Owner responde personalmente en la bitácora.</p>
+
+        <form class="slip" id="reviewForm" novalidate>
+          <div class="slip-head">
+            <span>Hoja de bitácora</span>
+            <span>Nueva entrada</span>
+          </div>
+          <div class="slip-field">
+            <label for="revName">Nombre o número <span>opcional</span></label>
+            <input id="revName" name="name" type="text" maxlength="40" placeholder="Anónimo" autocomplete="nickname">
+          </div>
+          <div class="slip-field">
+            <label for="revMsg">Mensaje</label>
+            <textarea id="revMsg" name="message" rows="4" maxlength="500" placeholder="¿Cómo va tu barco?" aria-describedby="reviewMsg"></textarea>
+          </div>
+          <button class="btn btn-ink btn-block" id="reviewBtn" type="submit">Firmar en la bitácora</button>
+          <p class="slip-status" id="reviewMsg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="log-entries-wrap">
+        <div class="log-meta">
+          <span>Entradas recientes</span>
+          <span id="reviewCount">—</span>
+        </div>
+        <div class="log-entries" id="reviews"></div>
+        <div class="log-state" id="reviewsState">
+          <p class="is-loading">Abriendo la bitácora…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-top">
+      <a class="brand brand-foot" href="#top" aria-label="Volver arriba">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="12" cy="5.2" r="2.1"/>
+            <path d="M12 7.6V19"/>
+            <path d="M8.1 10.4h7.8"/>
+            <path d="M12 19c-3.3 0-5.5-2.3-5.9-5.3M12 19c3.3 0 5.5-2.3 5.9-5.3"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Houshou Marine</span>
+          <span class="brand-sub">Red de sub-bots</span>
+        </span>
+      </a>
+      <p class="foot-line">Un barco, una red y una tripulación que no abandona el timón.</p>
+      <nav class="foot-nav" aria-label="Pie de página">
+        <a href="#embarque">Embarque</a>
+        <a href="#tripulacion">Tripulación</a>
+        <a href="#bitacora">Bitácora</a>
+      </nav>
+    </div>
+    <div class="foot-fine">
+      <p>Sitio de fans no oficial. Houshou Marine pertenece a COVER Corp.</p>
+      <p>Powered by DevsOpp, 2020–2026</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js" defer></script>
 </body>
 </html>
