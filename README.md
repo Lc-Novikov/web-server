@@ -1,62 +1,40 @@
 # Houshou Marine · Sub-Bot VIP
 
-Página de embarque para la red de sub-bots de Houshou Marine. Conecta un número de WhatsApp como **Sub-Bot VIP** escaneando un QR, muestra la tripulación conectada en vivo y recoge las reseñas de la comunidad en una bitácora.
-
-El rediseño parte de una idea sencilla: si el proyecto es una tripulación, la página debe sentirse como una **carta de embarque**. De ahí salen el compás de navegación, el sello del capitán, el manifiesto y la bitácora.
-
-## Cómo está hecho
-
-- HTML + CSS + JavaScript sin frameworks ni paso de compilación.
-- Tipografía autoalojada: **Newsreader** para titulares y **Archivo** para interfaz.
-- Ilustración vectorial propia (compás, ancla, líneas de carta) y sello circular con el retrato.
-- Paleta de tinta marina, papel de carta náutica, rojo de señal y latón.
-- Estados reales para cargando, vacío, error y conexión completada.
-- Accesibilidad: navegación por teclado, foco visible, etiquetas, `aria-live` y respeto a `prefers-reduced-motion`.
-- Sin imágenes externas ni dependencias de terceros en producción (las fuentes y el retrato se sirven desde `assets/`).
+Sitio estático para conectar un número de WhatsApp como **Sub-Bot VIP** de Houshou Marine. Genera un código QR, muestra los sub-bots conectados y recoge las opiniones de la comunidad.
 
 ## Estructura
 
 ```
 index.html                  Página completa
-assets/css/main.css         Sistema visual, componentes y responsive
-assets/js/app.js            Conexión QR, manifiesto y bitácora
+assets/css/main.css         Estilos, componentes y responsive
+assets/js/app.js            Conexión QR, lista de sub-bots y opiniones
 assets/fonts/               Newsreader + Archivo (licencias OFL incluidas)
-assets/img/                 Retrato, favicon y versión optimizada
-dev/preview-server.mjs      Vista local con API simulada
+assets/img/                 Retrato y favicon
 vercel.json                 Proxy /api hacia el backend
 ```
 
-## Ver en local
+No hay frameworks, compilación ni dependencias: solo HTML, CSS y JavaScript.
 
-No hace falta instalar nada. El servidor de vista previa usa solo Node.
+## API
 
-```bash
-node dev/preview-server.mjs
-# http://localhost:4173
-```
-
-El mock simula el flujo completo: genera un QR de prueba, marca la conexión como completada a los ~6 segundos, añade el número al manifiesto y permite publicar entradas en la bitácora.
-
-Para ver la página con datos reales, sirve la carpeta con cualquier servidor estático y apunta las peticiones `/api` al backend (ver abajo).
-
-## API esperada
-
-Todas las rutas son relativas y las consume `assets/js/app.js`:
+El cliente consume rutas relativas bajo `/api`:
 
 | Método | Ruta | Respuesta |
 | --- | --- | --- |
 | `GET` | `/api/list` | `{ list: [{ name, number, vip, pic }] }` |
 | `POST` | `/api/start` | `{ number }` → `{}` o `{ error }` |
-| `GET` | `/api/qr?number=...` | `{ qr }` (data URL o URL de imagen) |
+| `GET` | `/api/qr?number=...` | `{ qr }` |
 | `GET` | `/api/status?number=...` | `{ connected: boolean }` |
 | `GET` | `/api/reviews` | `{ reviews: [{ name, date, message, reply }] }` |
 | `POST` | `/api/reviews` | `{ name, message }` → `{}` |
 
-`pic` puede ser una URL `http(s)`, una ruta local o un data URI; si falta, se usan las iniciales.
+`pic` puede ser una URL `http(s)`, una ruta local o un data URI.
 
 ## Despliegue
 
-El sitio es estático y está pensado para Vercel. `vercel.json` mantiene el proxy actual:
+Sube `index.html` y la carpeta `assets/` a cualquier hosting estático.
+
+En Vercel, `vercel.json` mantiene el proxy de `/api`:
 
 ```json
 {
@@ -66,10 +44,10 @@ El sitio es estático y está pensado para Vercel. `vercel.json` mantiene el pro
 }
 ```
 
-Si el backend cambia de host o de puerto, actualiza esa línea. No hay build que configurar: Vercel sirve `index.html` y la carpeta `assets/`.
+Si el backend cambia de host o puerto, actualiza esa línea.
 
 ## Créditos
 
-- Houshou Marine pertenece a COVER Corp. Este es un proyecto de fans no oficial.
+- Houshou Marine pertenece a COVER Corp. Proyecto de fans no oficial.
 - Proyecto y soporte: DevsOpp.
-- Tipografías: Archivo y Newsreader, bajo SIL Open Font License (archivos de licencia en `assets/fonts/`).
+- Tipografías Archivo y Newsreader bajo SIL Open Font License.
