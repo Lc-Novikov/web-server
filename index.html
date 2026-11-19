@@ -8,11 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#05060f;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.1);--cyan:#00e5ff;--violet:#a855f7;--pink:#ff6ec4;--gold:#ffd700;--wa:#075e54;--wa2:#dcf8c6}
+:root{--bg:#05060f;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.1);--cyan:#00e5ff;--violet:#a855f7;--pink:#ff6ec4;--gold:#ffd700}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(600px 400px at 15% 5%,#a855f733,transparent 60%),radial-gradient(700px 500px at 90% 20%,#00e5ff22,transparent 60%),radial-gradient(600px 500px at 50% 100%,#ff6ec41a,transparent 60%);pointer-events:none;z-index:0}
-a{color:inherit;text-decoration:none}
-.top{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:28px 20px 10px;text-align:center}
+.top{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:28px 16px 10px;text-align:center}
 .pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:6px 12px;border-radius:100px;font-size:12px;letter-spacing:.5px;color:#cbd5e1}
 .pill i{width:7px;height:7px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;display:block;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -20,71 +19,65 @@ a{color:inherit;text-decoration:none}
 h1{font-family:'Outfit',sans-serif;font-size:clamp(32px,6vw,52px);line-height:.95;letter-spacing:-1px}
 h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .top p{color:#94a3b8;font-size:14px;margin-top:10px;line-height:1.6}
-.stats{display:flex;justify-content:center;gap:12px;margin:18px 0;flex-wrap:wrap}
-.stat{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(12px);padding:10px 16px;border-radius:14px;font-size:13px}
+.stats{display:flex;justify-content:center;gap:10px;margin:18px 0;flex-wrap:wrap}
+.stat{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(12px);padding:10px 14px;border-radius:14px;font-size:12px;text-align:center;flex:1;min-width:100px;max-width:150px}
 .stat b{font-size:16px;display:block}
-.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:10px 20px 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-@media(max-width:820px){.wrap{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:24px;padding:22px;overflow:hidden;position:relative}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent)}
+.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:10px 16px 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+@media(max-width:820px){.wrap{grid-template-columns:1fr!important}}
+.card{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:24px;padding:20px;overflow:hidden;position:relative;min-width:0}
 .banner{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:16px}
-.card h2{font-family:'Outfit',sans-serif;font-size:19px;display:flex;align-items:center;gap:8px}
-.card h2 svg{flex-shrink:0}
+.card h2{font-family:'Outfit',sans-serif;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .card>p{color:#94a3b8;font-size:13px;margin:6px 0 14px;line-height:1.6}
 .vip-box{background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(168,85,247,.15));border:1px solid rgba(255,215,0,.35);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
 .vip-box b{color:var(--gold)}
 .vip-box span{font-size:13px;line-height:1.6;color:#e2e8f0}
 .vip-box small{color:#94a3b8}
 .field label{font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;font-weight:600;letter-spacing:.5px}
-.input-row{display:flex;gap:10px}
-input{flex:1;width:100%;padding:14px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;font-size:15px;outline:none;font-family:inherit}
+input{width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;font-size:15px;outline:none;font-family:inherit;min-width:0}
 input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.15)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,var(--cyan),var(--violet));color:#fff;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;transition:.2s}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,var(--cyan),var(--violet));color:#fff;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
 .btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.6}
 .btn-ghost{background:rgba(255,255,255,.08);border:1px solid var(--line)}
-#qrBox{display:none;margin-top:16px;text-align:center;background:#fff;border-radius:18px;padding:16px;animation:pop .3s}
-@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+#qrBox{display:none;margin-top:16px;text-align:center;background:#fff;border-radius:18px;padding:16px}
 #qrImg{width:210px;height:210px;max-width:100%}
 #status{margin-top:12px;font-size:13px;color:#facc15;text-align:center;min-height:18px}
 .success{color:#22c55e!important;font-weight:700}
 .error{color:#f87171!important}
 .steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
 .step{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12px;color:#cbd5e1;line-height:1.5}
 .step b{color:#fff;display:block;font-size:13px}
-.list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;padding-right:4px}
-.item{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:10px}
-.item img{width:48px;height:48px;border-radius:14px;object-fit:cover}
-.item b{font-size:14px}
+.list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto}
+.item{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:10px;min-width:0}
+.item img{width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0}
+.item b{font-size:14px;word-break:break-word}
 .item small{font-size:11px;color:#94a3b8;display:block}
 .item span{font-size:11px;color:#22c55e}
-.badge{padding:5px 9px;border-radius:100px;font-size:11px;margin-left:auto;font-weight:800;white-space:nowrap}
+.badge{padding:5px 9px;border-radius:100px;font-size:11px;margin-left:auto;font-weight:800;white-space:nowrap;flex-shrink:0}
 .badge-vip{background:rgba(255,215,0,.15);color:var(--gold);border:1px solid rgba(255,215,0,.4)}
 .badge-normal{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid var(--line)}
-/* CHAT WHATSAPP */
+/* CHAT - ARREGLADO SIN IMAGEN ROTA */
 .chat-card{grid-column:1 / -1;padding:0;overflow:hidden}
 .chat-head{display:flex;align-items:center;gap:12px;padding:16px 20px;background:linear-gradient(90deg,#0f172a,#1e1b4b);border-bottom:1px solid var(--line)}
-.chat-head img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan)}
+.chat-head img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan);flex-shrink:0}
 .chat-head b{font-size:15px}
 .chat-head small{color:#94a3b8;font-size:12px;display:block}
-.chat-head .dot{margin-left:auto;width:9px;height:9px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e}
-.chat-body{background:#0b141a url('https://i.ibb.co/3y0X7Qp/whatsapp-bg.png');background-size:200px;padding:18px 14px;min-height:360px;max-height:480px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:82%;padding:10px 12px 16px;border-radius:14px;position:relative;font-size:14px;line-height:1.5;animation:pop .25s;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.chat-head .dot{margin-left:auto;width:9px;height:9px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;flex-shrink:0}
+.chat-body{background:#0b141a;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:22px 22px;padding:16px 12px;min-height:360px;max-height:480px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:10px 12px 18px;border-radius:14px;position:relative;font-size:14px;line-height:1.5;box-shadow:0 2px 8px rgba(0,0,0,.2);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
 .msg-in{background:#fff;color:#111b21;align-self:flex-start;border-top-left-radius:4px}
 .msg-out{background:#d9fdd3;color:#111b21;align-self:flex-end;border-top-right-radius:4px}
-.msg b{font-size:12px;display:block;margin-bottom:3px}
+.msg b{font-size:12px;display:block;margin-bottom:3px;word-break:break-word}
 .msg-in b{color:#00a884}
 .msg-out b{color:#53bdeb}
 .msg .time{position:absolute;right:8px;bottom:4px;font-size:10px;color:#667781;display:flex;align-items:center;gap:3px}
-.msg .time svg{width:14px;height:14px}
-.reply-box{margin-top:8px;background:rgba(0,168,132,.08);border-left:3px solid #00a884;border-radius:8px;padding:8px 10px;font-size:13px;color:#111b21}
-.reply-box b{color:#00a884;font-size:11px}
-.empty-chat{text-align:center;color:#fff;background:rgba(0,0,0,.45);padding:16px;border-radius:12px;font-size:13px;backdrop-filter:blur(4px)}
-.chat-input{display:flex;gap:10px;padding:12px;background:#f0f2f5;align-items:center}
-.chat-input input{background:#fff;color:#111;border:none;border-radius:24px;padding:13px 16px}
+.empty-chat{text-align:center;color:#fff;background:rgba(0,0,0,.5);padding:16px;border-radius:12px;font-size:13px}
+.chat-input{display:flex;gap:8px;padding:12px;background:#f0f2f5;align-items:center}
+.chat-input input{background:#fff;color:#111;border:none;border-radius:24px;padding:13px 14px;font-size:14px}
 .chat-input button{width:48px;height:48px;border-radius:50%;border:none;background:#00a884;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(0,168,132,.4)}
 .chat-input button:active{transform:scale(.95)}
-footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-size:12px;padding:0 20px}
+footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-size:12px;padding:0 16px}
 </style>
 </head>
 <body>
@@ -104,12 +97,12 @@ footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-
 <div class="card">
 <img class="banner" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
 <div class="vip-box">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M2 8l5 2 5-6 5 6 5-2-3 9H5L2 8Z" fill="#FFD700"/><circle cx="7" cy="19" r="1.5" fill="#FFD700"/><circle cx="12" cy="19" r="1.5" fill="#FFD700"/><circle cx="17" cy="19" r="1.5" fill="#FFD700"/></svg>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M2 8l5 2 5-6 5 6 5-2-3 9H5L2 8Z" fill="#FFD700"/><circle cx="7" cy="19" r="1.5" fill="#FFD700"/><circle cx="12" cy="19" r="1.5" fill="#FFD700"/><circle cx="17" cy="19" r="1.5" fill="#FFD700"/></svg>
 <span><b>WEB = VIP 👑</b><br>✅ Reconexión automática<br>✅ Siempre activo aunque se caiga<br><small>WhatsApp con .serbot = NORMAL, sin reconexión</small></span>
 </div>
 <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="#00e5ff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.9 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4 0-.5.1-.6l.7-.8c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg> Conectarte como Sub-Bot VIP</h2>
 <p>Escanea el código QR con tu WhatsApp y te convertirás en Sub-Bot VIP de Houshou Marine.</p>
-<div class="field"><label>TU NÚMERO CON CÓDIGO DE PAÍS</label><div class="input-row"><input id="number" type="tel" placeholder="51987654321"></div></div>
+<div class="field"><label>TU NÚMERO CON CÓDIGO DE PAÍS</label><input id="number" type="tel" placeholder="51987654321"></div>
 <button class="btn" id="btn" onclick="getQR()">Generar QR VIP 👑</button>
 <div id="qrBox"><img id="qrImg" src=""><div style="font-size:12px;color:#333;margin-top:8px">WhatsApp → Dispositivos vinculados → Vincular dispositivo</div></div>
 <div id="status"></div>
@@ -131,7 +124,7 @@ footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-
 <div class="card chat-card">
 <div class="chat-head">
 <img src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
-<div><b>Houshou Marine - Reseñas</b><small>El Owner responde personalmente • En línea</small></div>
+<div style="min-width:0"><b>Houshou Marine - Reseñas</b><small>El Owner responde personalmente • En línea</small></div>
 <span class="dot"></span>
 </div>
 <div class="chat-body" id="reviews">
@@ -174,7 +167,7 @@ async function loadList(){
     const box=document.getElementById('list');
     document.getElementById('count').textContent=data.list?.length||0;
     if(!data.list||!data.list.length){ box.innerHTML='<div style="color:#888;font-size:13px">Aún no hay Sub-Bots conectados. Sé el primero 👑</div>'; return; }
-    box.innerHTML=data.list.map(u=>`<div class="item"><img src="${u.pic||IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'"><div><b>${u.name||'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div><span class="badge ${u.vip?'badge-vip':'badge-normal'}">${u.vip?'👑 VIP':'⚪ NORMAL'}</span></div>`).join('');
+    box.innerHTML=data.list.map(u=>`<div class="item"><img src="${u.pic||IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'"><div style="min-width:0"><b>${u.name||'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div><span class="badge ${u.vip?'badge-vip':'badge-normal'}">${u.vip?'👑 VIP':'⚪ NORMAL'}</span></div>`).join('');
   }catch(e){ document.getElementById('list').innerHTML='Error al cargar lista'; }
 }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
@@ -184,8 +177,8 @@ async function loadReviews(){
     const box=document.getElementById('reviews');
     if(!d.reviews?.length){ box.innerHTML='<div class="empty-chat">💬 Sin reseñas aún, sé el primero en escribirle a Houshou Marine.</div>'; return; }
     box.innerHTML=d.reviews.slice(0,20).reverse().map(x=>`
-      <div class="msg msg-in"><b>${esc(x.name)}</b>${esc(x.message)}<span class="time">${esc(x.date?.slice(11,16)||'')} <svg viewBox="0 0 24 24" fill="#53bdeb"><path d="M1 11l8 8L23 5l-2-2-12 12L3 9z"/></svg></span></div>
-      ${x.reply?`<div class="msg msg-out"><b>👑 HOUSHOU MARINE - Owner</b>${esc(x.reply)}<span class="time">${esc(x.date?.slice(11,16)||'')} <svg viewBox="0 0 24 24" fill="#53bdeb"><path d="M1 11l8 8L23 5l-2-2-12 12L3 9z"/></svg></span></div>`:`<div class="msg msg-out" style="opacity:.6"><b>👑 HOUSHOU MARINE</b><i>Escribiendo...</i><span class="time"></span></div>`}
+      <div class="msg msg-in"><b>${esc(x.name)}</b>${esc(x.message)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>
+      ${x.reply?`<div class="msg msg-out"><b>👑 HOUSHOU MARINE - Owner</b>${esc(x.reply)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>`:`<div class="msg msg-out" style="opacity:.6"><b>👑 HOUSHOU MARINE</b><i>Escribiendo...</i></div>`}
     `).join('');
     box.scrollTop=box.scrollHeight;
   }catch{}
