@@ -5,66 +5,102 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HOUSHOU MARINE - Conectar Sub-Bot</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0a0a0f;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{background:#15151f;border:1px solid #2a2a3a;border-radius:20px;padding:30px;width:100%;max-width:420px;text-align:center}
-h1{font-size:22px;margin-bottom:5px;color:#00d4ff}
-p{color:#aaa;font-size:13px;margin-bottom:20px}
-input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#0a0a0f;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
-button{width:100%;padding:14px;border:none;border-radius:12px;background:#00d4ff;color:#000;font-weight:bold;font-size:16px;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#07070d;color:#fff;min-height:100vh;padding:20px;background-image:radial-gradient(circle at 20% 20%, #1a0b2e 0%, transparent 50%),radial-gradient(circle at 80% 80%, #001a2e 0%, transparent 50%)}
+.top{max-width:900px;margin:0 auto;text-align:center;padding:20px 0}
+.logo{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #00d4ff;box-shadow:0 0 30px #00d4ff88;margin-bottom:10px}
+h1{font-size:28px;background:linear-gradient(90deg,#00d4ff,#a855f7,#ff6ec4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.top p{color:#aaa;font-size:14px;margin-top:6px}
+.wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.wrap{grid-template-columns:1fr}}
+.card{background:#12121f;border:1px solid #2a2a3a;border-radius:20px;padding:24px}
+.card h2{font-size:18px;margin-bottom:8px;color:#00d4ff}
+.card p{color:#aaa;font-size:13px;margin-bottom:16px;line-height:1.6}
+input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#07070d;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
+button{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(90deg,#00d4ff,#a855f7);color:#fff;font-weight:bold;font-size:16px;cursor:pointer}
 button:disabled{opacity:.5}
-#codeBox{display:none;margin-top:20px;background:#0a0a0f;border:1px dashed #00d4ff;border-radius:12px;padding:20px}
-#code{font-size:32px;letter-spacing:6px;font-weight:bold;color:#00d4ff}
-#status{margin-top:15px;font-size:13px;color:#ffcc00}
+#qrBox{display:none;margin-top:16px;text-align:center;background:#fff;border-radius:16px;padding:16px}
+#qrImg{width:230px;height:230px;max-width:100%}
+#status{margin-top:14px;font-size:13px;color:#ffcc00;text-align:center}
 .success{color:#00ff88!important}
 .error{color:#ff5555!important}
-ol{text-align:left;font-size:12px;color:#aaa;margin-top:15px;line-height:1.8}
+ol{text-align:left;font-size:12px;color:#aaa;margin-top:14px;line-height:1.8;padding-left:18px}
+.list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto}
+.item{display:flex;align-items:center;gap:12px;background:#0a0a14;border:1px solid #222;border-radius:14px;padding:10px}
+.item img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.item b{font-size:14px}
+.item span{font-size:12px;color:#00ff88}
+.item small{font-size:11px;color:#aaa;display:block}
+.badge{background:#00ff8822;color:#00ff88;padding:3px 8px;border-radius:20px;font-size:11px;margin-left:auto}
+.banner{width:100%;height:140px;object-fit:cover;border-radius:16px;margin-bottom:16px;border:1px solid #2a2a3a}
+footer{max-width:900px;margin:20px auto;text-align:center;color:#555;font-size:12px}
 </style>
 </head>
 <body>
-<div class="card">
+<div class="top">
+<img class="logo" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg" alt="Houshou Marine">
 <h1>HOUSHOU MARINE - AI</h1>
-<p>Conecta tu número como Sub-Bot</p>
-<input id="number" type="tel" placeholder="51987654321 - con código de país">
-<button id="btn" onclick="getCode()">Generar Código</button>
-<div id="codeBox">
-<div style="font-size:12px;color:#aaa">TU CÓDIGO ES:</div>
-<div id="code">--------</div>
-<div style="font-size:12px;color:#aaa;margin-top:10px">Pégalo en WhatsApp > Dispositivos vinculados > Vincular con código</div>
+<p>Conecta tu número como Sub-Bot escaneando el QR<br>Red oficial de Sub-Bots • DevsOpp</p>
 </div>
+<div class="wrap">
+<div class="card">
+<img class="banner" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg" alt="Houshou Marine Banner">
+<h2>📱 Conectarte como Sub-Bot</h2>
+<p>Escanea el código QR con tu WhatsApp y te convertirás en un Sub-Bot de Houshou Marine.</p>
+<input id="number" type="tel" placeholder="51987654321 - con código de país">
+<button id="btn" onclick="getQR()">Generar QR</button>
+<div id="qrBox"><img id="qrImg" src=""><div style="font-size:12px;color:#333;margin-top:8px">Escanea en WhatsApp > Dispositivos vinculados</div></div>
 <div id="status"></div>
 <ol>
-<li>Genera el código aquí</li>
-<li>Pégalo en tu WhatsApp en menos de 60 segundos</li>
-<li>Espera a que diga Conectado</li>
-<li>No cierres esta página hasta que conecte</li>
+<li>Pon tu número y genera el QR</li>
+<li>En WhatsApp: 3 puntos > Dispositivos vinculados</li>
+<li>Escanea el QR en menos de 45 segundos</li>
+<li>Si expira, dale de nuevo a Generar QR</li>
+<li>No cierres esta página hasta que diga Conectado</li>
 </ol>
 </div>
+<div class="card">
+<h2>🟢 Sub-Bots Conectados</h2>
+<p>Estos son los Sub-Bots que ya están en línea. Puedes usar cualquiera para probar los comandos.</p>
+<div id="list" class="list"><div style="color:#888;font-size:13px">Cargando...</div></div>
+<button onclick="loadList()" style="margin-top:12px;background:#222">🔄 Actualizar lista</button>
+</div>
+</div>
+<footer>© Powered by DevsOpp 2020 - 2026 | HOUSHOU MARINE - AI | All rights reserved</footer>
 <script>
 const API_URL = "";
-let checkInterval = null;
-async function getCode(){
+const IMG_DEFAULT = "https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg";
+let qrInterval = null, statusInterval = null;
+async function getQR(){
   const number = document.getElementById('number').value.replace(/[^0-9]/g,'');
   if(number.length < 8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
   document.getElementById('btn').disabled = true;
-  document.getElementById('status').textContent = 'Generando código...';
+  document.getElementById('status').textContent = 'Generando QR...';
   document.getElementById('status').className = '';
   try{
-    const res = await fetch(API_URL + '/api/pair', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number})});
+    const res = await fetch(API_URL + '/api/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number})});
     const data = await res.json();
-    if(!data.code) throw new Error(data.error || 'Error');
-    document.getElementById('codeBox').style.display = 'block';
-    document.getElementById('code').textContent = data.code;
-    document.getElementById('status').textContent = 'Código generado, pégalo rápido en tu WhatsApp';
-    if(checkInterval) clearInterval(checkInterval);
-    checkInterval = setInterval(async ()=>{
+    if(data.error) throw new Error(data.error);
+    document.getElementById('qrBox').style.display = 'block';
+    document.getElementById('status').textContent = 'Escanea el QR ahora, se actualiza solo si expira';
+    if(qrInterval) clearInterval(qrInterval);
+    if(statusInterval) clearInterval(statusInterval);
+    const fetchQR = async ()=>{
+      const r = await fetch(API_URL + '/api/qr?number=' + number);
+      const s = await r.json();
+      if(s.qr) document.getElementById('qrImg').src = s.qr;
+    };
+    fetchQR();
+    qrInterval = setInterval(fetchQR, 3000);
+    statusInterval = setInterval(async ()=>{
       const r = await fetch(API_URL + '/api/status?number=' + number);
       const s = await r.json();
       if(s.connected){
-        clearInterval(checkInterval);
+        clearInterval(qrInterval); clearInterval(statusInterval);
         document.getElementById('status').textContent = '✅ CONECTADO COMO SUB-BOT';
         document.getElementById('status').className = 'success';
         document.getElementById('btn').disabled = false;
+        loadList();
       }
     }, 3000);
   }catch(e){
@@ -73,6 +109,22 @@ async function getCode(){
     document.getElementById('btn').disabled = false;
   }
 }
+async function loadList(){
+  try{
+    const r = await fetch(API_URL + '/api/list');
+    const data = await r.json();
+    const box = document.getElementById('list');
+    if(!data.list || !data.list.length){ box.innerHTML = '<div style="color:#888;font-size:13px">Aún no hay Sub-Bots conectados. Sé el primero.</div>'; return; }
+    box.innerHTML = data.list.map(u => `
+      <div class="item">
+        <img src="${u.pic || IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'">
+        <div><b>${u.name || 'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div>
+        <span class="badge">SUB-BOT</span>
+      </div>`).join('');
+  }catch(e){ document.getElementById('list').innerHTML = 'Error al cargar lista'; }
+}
+loadList();
+setInterval(loadList, 15000);
 </script>
 </body>
-</html>
+</html> 
