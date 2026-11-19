@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HOUSHOU MARINE - Conectar Sub-Bot</title>
+<title>HOUSHOU MARINE - Conectar Sub-Bot VIP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 body{background:#07070d;color:#fff;min-height:100vh;padding:20px;background-image:radial-gradient(circle at 20% 20%, #1a0b2e 0%, transparent 50%),radial-gradient(circle at 80% 80%, #001a2e 0%, transparent 50%)}
@@ -31,8 +31,11 @@ ol{text-align:left;font-size:12px;color:#aaa;margin-top:14px;line-height:1.8;pad
 .item b{font-size:14px}
 .item span{font-size:12px;color:#00ff88}
 .item small{font-size:11px;color:#aaa;display:block}
-.badge{background:#00ff8822;color:#00ff88;padding:3px 8px;border-radius:20px;font-size:11px;margin-left:auto}
+.badge{padding:3px 8px;border-radius:20px;font-size:11px;margin-left:auto}
+.badge-vip{background:#ffd70022;color:#ffd700;border:1px solid #ffd700}
+.badge-normal{background:#88888822;color:#aaa;border:1px solid #555}
 .banner{width:100%;height:140px;object-fit:cover;border-radius:16px;margin-bottom:16px;border:1px solid #2a2a3a}
+.vip-box{background:linear-gradient(90deg,#ffd70022,#a855f722);border:1px solid #ffd70055;border-radius:12px;padding:12px;margin-bottom:14px;font-size:13px;line-height:1.6}
 footer{max-width:900px;margin:20px auto;text-align:center;color:#555;font-size:12px}
 </style>
 </head>
@@ -40,15 +43,16 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:#555;font-size:1
 <div class="top">
 <img class="logo" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg" alt="Houshou Marine">
 <h1>HOUSHOU MARINE - AI</h1>
-<p>Conecta tu número como Sub-Bot escaneando el QR<br>Red oficial de Sub-Bots • DevsOpp</p>
+<p>Conecta tu número como Sub-Bot VIP escaneando el QR<br>Red oficial de Sub-Bots • DevsOpp</p>
 </div>
 <div class="wrap">
 <div class="card">
 <img class="banner" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg" alt="Houshou Marine Banner">
-<h2>📱 Conectarte como Sub-Bot</h2>
-<p>Escanea el código QR con tu WhatsApp y te convertirás en un Sub-Bot de Houshou Marine.</p>
+<div class="vip-box">👑 <b>WEB = VIP</b><br>✅ Reconexión automática<br>✅ Siempre activo aunque se caiga<br>⚪ WhatsApp con .serbot = NORMAL, sin reconexión</div>
+<h2>📱 Conectarte como Sub-Bot VIP</h2>
+<p>Escanea el código QR con tu WhatsApp y te convertirás en Sub-Bot VIP de Houshou Marine.</p>
 <input id="number" type="tel" placeholder="51987654321 - con código de país">
-<button id="btn" onclick="getQR()">Generar QR</button>
+<button id="btn" onclick="getQR()">Generar QR VIP 👑</button>
 <div id="qrBox"><img id="qrImg" src=""><div style="font-size:12px;color:#333;margin-top:8px">Escanea en WhatsApp > Dispositivos vinculados</div></div>
 <div id="status"></div>
 <ol>
@@ -61,9 +65,17 @@ footer{max-width:900px;margin:20px auto;text-align:center;color:#555;font-size:1
 </div>
 <div class="card">
 <h2>🟢 Sub-Bots Conectados</h2>
-<p>Estos son los Sub-Bots que ya están en línea. Puedes usar cualquiera para probar los comandos.</p>
+<p>👑 = VIP (Web, con reconexión) | ⚪ = NORMAL (WhatsApp)</p>
 <div id="list" class="list"><div style="color:#888;font-size:13px">Cargando...</div></div>
 <button onclick="loadList()" style="margin-top:12px;background:#222">🔄 Actualizar lista</button>
+</div>
+<div class="card" style="grid-column:1 / -1">
+<h2>💬 Reseñas y Opiniones</h2>
+<p>Déjanos tu opinión sobre Houshou Marine. El Owner responde personalmente.</p>
+<input id="revName" placeholder="Tu nombre o número">
+<input id="revMsg" placeholder="Escribe tu opinión, duda o sugerencia...">
+<button onclick="sendReview()">Enviar Reseña</button>
+<div id="reviews" style="margin-top:16px;display:flex;flex-direction:column;gap:10px"></div>
 </div>
 </div>
 <footer>© Powered by DevsOpp 2020 - 2026 | HOUSHOU MARINE - AI | All rights reserved</footer>
@@ -75,7 +87,7 @@ async function getQR(){
   const number = document.getElementById('number').value.replace(/[^0-9]/g,'');
   if(number.length < 8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
   document.getElementById('btn').disabled = true;
-  document.getElementById('status').textContent = 'Generando QR...';
+  document.getElementById('status').textContent = 'Generando QR VIP...';
   document.getElementById('status').className = '';
   try{
     const res = await fetch(API_URL + '/api/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number})});
@@ -97,7 +109,7 @@ async function getQR(){
       const s = await r.json();
       if(s.connected){
         clearInterval(qrInterval); clearInterval(statusInterval);
-        document.getElementById('status').textContent = '✅ CONECTADO COMO SUB-BOT';
+        document.getElementById('status').textContent = '✅ CONECTADO COMO SUB-BOT VIP 👑';
         document.getElementById('status').className = 'success';
         document.getElementById('btn').disabled = false;
         loadList();
@@ -119,12 +131,32 @@ async function loadList(){
       <div class="item">
         <img src="${u.pic || IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'">
         <div><b>${u.name || 'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div>
-        <span class="badge">SUB-BOT</span>
+        <span class="badge ${u.vip ? 'badge-vip' : 'badge-normal'}">${u.vip ? '👑 VIP' : '⚪ NORMAL'}</span>
       </div>`).join('');
   }catch(e){ document.getElementById('list').innerHTML = 'Error al cargar lista'; }
 }
-loadList();
+async function loadReviews(){
+  try{
+    const r = await fetch(API_URL + '/api/reviews'); const d = await r.json();
+    document.getElementById('reviews').innerHTML = d.reviews.map(x => `
+      <div style="background:#0a0a14;border:1px solid #222;border-radius:12px;padding:12px">
+        <b>${x.name}</b> <small style="color:#888">${x.date}</small>
+        <p style="color:#ddd;margin:6px 0">${x.message}</p>
+        ${x.reply ? `<div style="background:#00d4ff22;border-left:3px solid #00d4ff;padding:8px;border-radius:8px"><b style="color:#00d4ff">👑 Owner:</b> ${x.reply}</div>` : '<small style="color:#ffcc00">Esperando respuesta del Owner...</small>'}
+      </div>`).join('') || 'Sin reseñas aún, sé el primero.';
+  }catch{}
+}
+async function sendReview(){
+  const name = document.getElementById('revName').value || 'Anónimo';
+  const message = document.getElementById('revMsg').value;
+  if(!message) return alert('Escribe algo');
+  await fetch(API_URL + '/api/reviews', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name, message})});
+  document.getElementById('revMsg').value = '';
+  loadReviews();
+}
+loadList(); loadReviews();
 setInterval(loadList, 15000);
+setInterval(loadReviews, 15000);
 </script>
 </body>
-</html> 
+</html>
