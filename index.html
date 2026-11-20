@@ -7,290 +7,322 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#05060f;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.1);--cyan:#00e5ff;--violet:#a855f7;--pink:#ff6ec4;--gold:#ffd700}
+:root{--bg:#020617;--cyan:#00e5ff;--violet:#a855f7;--pink:#ff6ec4;--gold:#ffd166}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(600px 400px at 15% 5%,#a855f733,transparent 60%),radial-gradient(700px 500px at 90% 20%,#00e5ff22,transparent 60%),radial-gradient(600px 500px at 50% 100%,#ff6ec41a,transparent 60%);pointer-events:none;z-index:0}
-.top{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:28px 16px 10px;text-align:center}
-.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:6px 12px;border-radius:100px;font-size:12px;color:#cbd5e1}
-.pill i{width:7px;height:7px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;display:block;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-avatar{width:108px;height:108px;border-radius:32px;object-fit:cover;margin:18px auto 10px;display:block;border:3px solid rgba(255,255,255,.2);box-shadow:0 20px 50px rgba(0,229,255,.35);transform:rotate(-2deg)}
-h1{font-family:'Outfit',sans-serif;font-size:clamp(32px,6vw,52px);line-height:.95}
-h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.top p{color:#94a3b8;font-size:14px;margin-top:10px;line-height:1.6}
-.stats{display:flex;justify-content:center;gap:10px;margin:18px 0;flex-wrap:wrap}
-.stat{background:var(--card);border:1px solid var(--line);padding:10px 14px;border-radius:14px;font-size:12px;text-align:center;flex:1;min-width:100px;max-width:150px}
-.stat b{font-size:16px;display:block}
-.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:10px 16px 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-@media(max-width:820px){.wrap{grid-template-columns:1fr!important}}
-.card{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:24px;padding:20px;overflow:hidden;position:relative;min-width:0}
-.banner{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:16px}
-.card h2{font-family:'Outfit',sans-serif;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.card>p{color:#94a3b8;font-size:13px;margin:6px 0 14px;line-height:1.6}
-.vip-box{background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(168,85,247,.15));border:1px solid rgba(255,215,0,.35);border-radius:16px;padding:14px;display:flex;gap:12px;margin-bottom:16px}
-.vip-box b{color:var(--gold)}
-.vip-box span{font-size:13px;line-height:1.6;color:#e2e8f0}
-.vip-box small{color:#94a3b8}
-.field label{font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;font-weight:600}
-input{width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;font-size:15px;outline:none;font-family:inherit;min-width:0}
-input:focus{border-color:var(--cyan)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,var(--cyan),var(--violet));color:#fff;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
-.btn:disabled{opacity:.6}
-.btn-ghost{background:rgba(255,255,255,.08);border:1px solid var(--line)}
-.btn-code{background:linear-gradient(90deg,#f59e0b,#ef4444)!important}
-#codeBox{display:none;margin-top:16px;text-align:center;background:#fef3c7;border:2px dashed #f59e0b;border-radius:18px;padding:18px;color:#111}
-#pairCode{font-size:42px;font-weight:900;letter-spacing:8px;color:#111;margin:8px 0}
-#countdown{font-size:22px;font-weight:900;color:#dc2626}
-#countBar{height:8px;background:#fde68a;border-radius:100px;overflow:hidden;margin:10px 0}
-#countFill{height:100%;background:linear-gradient(90deg,#22c55e,#f59e0b,#ef4444);width:100%;transition:width 1s linear}
-#status{margin-top:12px;font-size:13px;color:#facc15;text-align:center}
-.success{color:#22c55e!important;font-weight:700}
+
+/* ===== FONDO PREMIUM - OCEANO VIVO ===== */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(1000px 600px at 50% -10%,#1e1b4b 0%,transparent 60%),linear-gradient(180deg,#020617 0%,#0a1a3a 40%,#071233 100%)}
+.bg::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.7) 1px,transparent 1px);background-size:90px 90px;opacity:.25;animation:stars 30s linear infinite}
+@keyframes stars{0%{background-position:0 0}100%{background-position:90px 180px}}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:orbFloat 10s ease-in-out infinite}
+.orb1{width:340px;height:340px;background:#00e5ff44;top:-90px;left:-90px}
+.orb2{width:380px;height:380px;background:#ff6ec433;top:35%;right:-130px;animation-delay:-4s}
+.orb3{width:280px;height:280px;background:#a855f744;bottom:-80px;left:30%;animation-delay:-7s}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-35px) scale(1.12)}}
+.burbuja{position:absolute;bottom:-20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(0,229,255,.15));animation:subir linear infinite}
+@keyframes subir{0%{transform:translateY(0);opacity:0}10%{opacity:.8}100%{transform:translateY(-110vh) translateX(30px);opacity:0}}
+
+/* ===== TOP ===== */
+.topbar{position:relative;z-index:2;max-width:520px;margin:0 auto;padding:18px 14px 0;display:flex;justify-content:space-between;align-items:center}
+.topbar b{font-family:'Outfit',sans-serif;font-size:15px;letter-spacing:.3px}
+.topbar b span{background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tabs{display:flex;gap:6px}
+.tabs button{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#cbd5e1;padding:8px 13px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;backdrop-filter:blur(10px)}
+.tabs button.active{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));color:#fff;border:none;box-shadow:0 8px 20px rgba(255,110,196,.4)}
+
+/* ===== CARD PRINCIPAL - BORDE QUE SE MUEVE ===== */
+.main{position:relative;z-index:2;max-width:520px;margin:16px auto;padding:0 14px 24px}
+.card-premium{position:relative;border-radius:28px;padding:2px;background:conic-gradient(from 0deg,var(--cyan),var(--violet),var(--pink),var(--gold),var(--cyan));background-size:200% 200%;animation:borderMove 5s linear infinite;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+@keyframes borderMove{0%{background-position:0% 0%}100%{background-position:200% 200%}}
+.card-inner{background:linear-gradient(180deg,#0f172a 0%,#0b1126 100%);border-radius:26px;padding:22px 18px;overflow:hidden;position:relative}
+.card-inner::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.08),transparent);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:120%}}
+
+/* ===== AVATAR 3D ===== */
+.avatar-wrap{width:112px;height:112px;margin:2px auto 10px;position:relative;perspective:800px}
+.avatar-ring{position:absolute;inset:-10px;border-radius:50%;background:conic-gradient(from 0deg,var(--cyan),var(--violet),var(--pink),var(--gold),var(--cyan));animation:spin 8s linear infinite;padding:3px;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-avatar{width:112px;height:112px;border-radius:50%;object-fit:cover;display:block;border:4px solid #0f172a;box-shadow:0 20px 40px rgba(0,229,255,.35);animation:floatY 5s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+.badge-vinc{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#111;padding:6px 12px;border-radius:100px;font-size:11px;font-weight:900;box-shadow:0 8px 20px rgba(255,255,255,.2)}
+.titulo{font-family:'Outfit',sans-serif;font-size:44px;line-height:.95;text-align:center;margin:12px 0 2px;letter-spacing:-1px}
+.titulo span{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+.sub{font-family:'Outfit',sans-serif;font-size:18px;color:#fda4af;text-align:center;font-style:italic}
+.desc{font-size:13px;color:#94a3b8;text-align:center;line-height:1.6;margin-top:6px}
+
+/* ===== SUBBOTS ===== */
+.subbots{margin-top:16px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px}
+.subbots-top{display:flex;justify-content:space-between;align-items:center}
+.subbots-top small{font-size:10px;letter-spacing:1px;color:#94a3b8;font-weight:800}
+.subbots-top b{font-size:20px;color:var(--cyan)}
+.subbots-top b span{color:#fff;font-size:13px}
+.bar{height:10px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden;margin:10px 0}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:0%;transition:width 1s;border-radius:100px;box-shadow:0 0 15px var(--pink)}
+.alerta{display:none;background:rgba(255,110,196,.12);border:1px solid rgba(255,110,196,.4);color:#fda4af;font-size:12px;padding:10px;border-radius:12px;line-height:1.5}
+
+/* ===== SELECTOR VERTICAL - 100% VERTICAL ===== */
+.label{font-size:11px;font-weight:900;letter-spacing:1px;color:#94a3b8;margin:18px 0 8px;display:flex;justify-content:space-between;align-items:center}
+.label span{color:var(--cyan);font-size:11px;cursor:pointer}
+.search-box{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:12px 12px;margin-bottom:10px}
+.search-box:focus-within{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.2)}
+.search-box input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit}
+.search-box input::placeholder{color:#64748b}
+.search-box button{background:rgba(255,255,255,.12);border:none;color:#fff;padding:6px 10px;border-radius:100px;font-size:11px;cursor:pointer}
+
+/* AQUI ESTA EL CAMBIO: lista VERTICAL, una debajo de otra, nunca horizontal */
+.paises-vertical{display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;padding-right:4px;scroll-behavior:smooth}
+.paises-vertical::-webkit-scrollbar{width:6px}
+.paises-vertical::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--pink));border-radius:100px}
+.pais-row{display:flex;align-items:center;gap:12px;width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:16px;padding:11px 12px;cursor:pointer;text-align:left;transition:.25s;animation:entrada .4s ease both}
+.pais-row:nth-child(1){animation-delay:.05s}.pais-row:nth-child(2){animation-delay:.1s}.pais-row:nth-child(3){animation-delay:.15s}.pais-row:nth-child(4){animation-delay:.2s}.pais-row:nth-child(5){animation-delay:.25s}
+@keyframes entrada{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.pais-row:hover{transform:translateX(4px);border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.08)}
+.pais-row.active{border-color:var(--pink);background:linear-gradient(90deg,rgba(0,229,255,.15),rgba(255,110,196,.18));box-shadow:0 0 20px rgba(255,110,196,.3)}
+.pais-row .flag{font-size:26px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);border-radius:11px;flex-shrink:0}
+.pais-row .info{flex:1;min-width:0}
+.pais-row .info b{font-size:14px;display:block}
+.pais-row .info small{font-size:11px;color:#94a3b8}
+.pais-row .code{background:linear-gradient(90deg,var(--cyan),var(--pink));color:#fff;font-weight:900;font-size:13px;padding:7px 10px;border-radius:100px;white-space:nowrap}
+.pais-row .check{font-size:16px;color:var(--cyan);display:none}
+.pais-row.active .check{display:block}
+.sel-actual{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(0,229,255,.15),rgba(255,110,196,.15));border:1px solid rgba(255,110,196,.4);border-radius:14px;padding:11px 12px;margin-top:10px}
+.sel-actual .flag{font-size:22px}
+.sel-actual b{font-size:13px}
+.sel-actual small{font-size:11px;color:#94a3b8;display:block}
+.sel-actual span{margin-left:auto;background:#fff;color:#111;font-weight:900;padding:6px 10px;border-radius:100px;font-size:12px}
+
+.input-num{display:flex;gap:8px;margin-top:12px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:16px;padding:5px 5px 5px 12px;align-items:center}
+.input-num:focus-within{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.2)}
+.input-num .prefijo{background:linear-gradient(90deg,var(--cyan),var(--pink));color:#fff;font-weight:900;padding:11px 12px;border-radius:12px;font-size:14px;white-space:nowrap}
+.input-num input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:16px;padding:12px 4px;font-family:inherit;min-width:0}
+.input-num input::placeholder{color:#64748b}
+.ejemplo{font-size:11px;color:#64748b;margin-top:6px}
+
+.btn-code{width:100%;margin-top:14px;padding:16px;border:none;border-radius:100px;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));background-size:200% auto;color:#fff;font-weight:900;font-size:15px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 15px 30px rgba(255,110,196,.4);transition:.3s}
+.btn-code:hover{background-position:right center;transform:translateY(-2px)}
+.btn-code:disabled{opacity:.6;transform:none}
+.btn-code::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:btnShine 3s infinite}
+@keyframes btnShine{0%{left:-80%}60%,100%{left:130%}}
+
+.estado{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px;margin-top:12px}
+.estado .ico{width:38px;height:38px;border-radius:50%;background:rgba(0,229,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px;animation:pulseIco 2s infinite}
+@keyframes pulseIco{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,.4)}50%{box-shadow:0 0 0 8px rgba(0,229,255,0)}}
+.estado small{font-size:10px;letter-spacing:1px;color:#94a3b8;font-weight:800}
+.estado b{font-size:13px;display:block}
+
+.code-box{margin-top:12px;background:rgba(255,255,255,.05);border:1px dashed rgba(0,229,255,.5);border-radius:18px;padding:14px;text-align:center}
+.code-box .top-row{display:flex;justify-content:space-between;align-items:center}
+.code-box .top-row b{font-size:12px;color:var(--pink)}
+.btn-copiar{background:#fff;border:none;padding:6px 11px;border-radius:100px;font-size:11px;font-weight:800;cursor:pointer}
+#pairCode{font-size:38px;font-weight:900;letter-spacing:10px;margin:10px 0;color:#fff;text-shadow:0 0 25px rgba(0,229,255,.6)}
+#codeEmpty{height:48px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:13px}
+#countdown{font-weight:900;color:var(--pink)}
+#countBar{height:8px;background:rgba(255,255,255,.12);border-radius:100px;overflow:hidden;margin:10px 0}
+#countFill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:100%;transition:width 1s linear}
+#status{margin-top:10px;font-size:13px;color:var(--pink);text-align:center;font-weight:700}
+.success{color:#22c55e!important}
 .error{color:#f87171!important}
-.steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-@media(max-width:480px){.steps{grid-template-columns:1fr}}
-.step{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12px;color:#cbd5e1;line-height:1.5}
-.step b{color:#fff;display:block}
-.list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto}
-.item{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:10px;min-width:0}
-.item img{width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0}
+.details{margin-top:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden}
+.details summary{padding:14px;cursor:pointer;font-weight:800;font-size:13px;color:var(--cyan);list-style:none;display:flex;justify-content:space-between}
+.details div{padding:0 14px 14px;font-size:13px;color:#cbd5e1;line-height:1.7}
+.details ol{padding-left:18px}
+
+.card-dark{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);border-radius:24px;padding:18px;margin-top:16px}
+.card-dark h2{font-family:'Outfit',sans-serif;font-size:17px}
+.card-dark>p{color:#94a3b8;font-size:13px;margin:6px 0 12px}
+.list{display:flex;flex-direction:column;gap:10px;max-height:360px;overflow-y:auto}
+.item{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:10px}
+.item img{width:48px;height:48px;border-radius:14px;object-fit:cover}
 .item b{font-size:14px}
 .item small{font-size:11px;color:#94a3b8;display:block}
 .item span{font-size:11px;color:#22c55e}
-.badge{padding:5px 9px;border-radius:100px;font-size:11px;margin-left:auto;font-weight:800;white-space:nowrap;flex-shrink:0}
-.badge-vip{background:rgba(255,215,0,.15);color:var(--gold);border:1px solid rgba(255,215,0,.4)}
-.badge-normal{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid var(--line)}
-.chat-card{grid-column:1 / -1;padding:0;overflow:hidden}
-.chat-head{display:flex;align-items:center;gap:12px;padding:16px 20px;background:linear-gradient(90deg,#0f172a,#1e1b4b);border-bottom:1px solid var(--line)}
-.chat-head img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan);flex-shrink:0}
-.chat-head b{font-size:15px}
-.chat-head small{color:#94a3b8;font-size:12px;display:block}
-.chat-head .dot{margin-left:auto;width:9px;height:9px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;flex-shrink:0}
-.chat-body{background:#0b141a;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:22px 22px;padding:16px 12px;min-height:340px;max-height:460px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:85%;padding:10px 12px 18px;border-radius:14px;position:relative;font-size:14px;line-height:1.5;box-shadow:0 2px 8px rgba(0,0,0,.2);word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap}
-.msg-in{background:#fff;color:#111b21;align-self:flex-start;border-top-left-radius:4px}
-.msg-out{background:#d9fdd3;color:#111b21;align-self:flex-end;border-top-right-radius:4px}
-.msg b{font-size:12px;display:block;margin-bottom:3px}
-.msg-in b{color:#00a884}
-.msg-out b{color:#53bdeb}
+.badge{padding:5px 9px;border-radius:100px;font-size:11px;margin-left:auto;font-weight:800;white-space:nowrap}
+.badge-vip{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));color:#fff}
+.badge-normal{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid rgba(255,255,255,.15)}
+.btn-ghost{width:100%;padding:12px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-weight:800;cursor:pointer;margin-top:10px}
+.chat-card{margin-top:16px;background:#fff;border-radius:24px;overflow:hidden;color:#111;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.chat-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#111;color:#fff}
+.chat-head img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan)}
+.chat-head b{font-size:14px}
+.chat-head small{color:#94a3b8;font-size:11px;display:block}
+.chat-head .dot{margin-left:auto;width:9px;height:9px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e}
+.chat-body{background:#0b141a;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;padding:14px 10px;min-height:280px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:9px 11px 18px;border-radius:14px;position:relative;font-size:13px;line-height:1.5;word-wrap:break-word;white-space:pre-wrap}
+.msg-in{background:#fff;color:#111;align-self:flex-start;border-top-left-radius:4px}
+.msg-out{background:#d9fdd3;color:#111;align-self:flex-end;border-top-right-radius:4px}
+.msg b{font-size:11px;display:block;margin-bottom:2px}
 .msg .time{position:absolute;right:8px;bottom:4px;font-size:10px;color:#667781}
-.empty-chat{text-align:center;color:#fff;background:rgba(0,0,0,.5);padding:16px;border-radius:12px;font-size:13px}
-.chat-input{display:flex;gap:8px;padding:12px;background:#f0f2f5;align-items:center}
-.chat-input input{background:#fff;color:#111;border:none;border-radius:24px;padding:13px 14px;font-size:14px}
-.chat-input button{width:48px;height:48px;border-radius:50%;border:none;background:#00a884;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
-.tabs{display:flex;gap:8px;padding:12px 12px 0;background:#0f172a}
-.tab{flex:1;padding:10px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-weight:700;font-size:13px;cursor:pointer}
-.tab.active{background:linear-gradient(90deg,var(--cyan),var(--violet));border:none}
-.review-item{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:14px}
-.review-item b{font-size:14px}
+.empty-chat{text-align:center;color:#fff;background:rgba(0,0,0,.5);padding:14px;border-radius:12px;font-size:13px}
+.chat-input{display:flex;gap:8px;padding:10px;background:#f0f2f5}
+.chat-input input{flex:1;background:#fff;border:none;border-radius:24px;padding:12px;font-size:13px;outline:none;min-width:0}
+.chat-input input:first-child{max-width:110px}
+.chat-input button{width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--cyan),var(--pink));color:#fff;cursor:pointer;flex-shrink:0}
+.review-item{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:12px}
+.review-item b{font-size:13px}
 .review-item small{color:#94a3b8;font-size:11px}
-.review-item p{color:#e2e8f0;font-size:14px;margin:6px 0;line-height:1.5;word-break:break-word}
-.review-reply{background:rgba(0,229,255,.12);border-left:3px solid var(--cyan);padding:10px;border-radius:10px;font-size:13px;margin-top:8px;line-height:1.5}
-.review-reply b{color:var(--cyan)}
-footer{max-width:1100px;margin:0 auto 20px;text-align:center;color:#475569;font-size:12px;padding:0 16px}
+.review-item p{color:#e2e8f0;font-size:13px;margin:6px 0;line-height:1.5}
+.review-reply{background:rgba(0,229,255,.12);border-left:3px solid var(--cyan);padding:8px;border-radius:10px;font-size:12px;margin-top:8px}
+footer{text-align:center;color:#475569;font-size:11px;padding:14px}
 </style>
 </head>
 <body>
-<div class="top">
-<div class="pill"><i></i> EN LÍNEA • RED OFICIAL DEVSOPP</div>
-<img class="hero-avatar" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
-<h1>HOUSHOU<br><span>MARINE - AI</span></h1>
-<p>Conecta tu número como Sub-Bot VIP con código de 8 dígitos.<br>Reconexión automática, siempre activa, sin volver a conectar.</p>
-<div class="stats">
-<div class="stat"><b id="count">—</b>Sub-Bots activos</div>
-<div class="stat"><b id="chatCount">—</b>Mensajes en chat</div>
-<div class="stat"><b>⚡ 24/7</b>Siempre en línea</div>
-</div>
+<div class="bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<div class="topbar"><b>HOUSHOU <span>MARINE</span> - Pairing</b><div class="tabs"><button class="active" onclick="showTab('vincular',this)">Vincular</button><button onclick="showTab('bots',this)">Ver bots</button></div></div>
+
+<div class="main" id="tab-vincular">
+<div class="card-premium"><div class="card-inner">
+<div class="avatar-wrap"><div class="avatar-ring"></div><img class="hero-avatar" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg"></div>
+<div style="text-align:center"><span class="badge-vinc">⚓ Vinculación</span></div>
+<h1 class="titulo">Houshou<br><span>Marine</span></h1>
+<div class="sub">Capitana del mar • Vincula tu WhatsApp</div>
+<p class="desc">Elige tu país, pon tu número y genera tu código. Sin QR, sin complicaciones.</p>
+
+<div class="subbots">
+<div class="subbots-top"><small>SUB-BOTS ACTIVOS<br>Tripulación en línea ahora</small><b><span id="count">—</span> <span>/ 120</span></b></div>
+<div class="bar"><div class="bar-fill" id="barFill"></div></div>
+<div class="alerta" id="alertaLimite">⚠️ Se alcanzó el límite de 120 sub-bots. Ya no se pueden generar códigos por ahora.</div>
 </div>
 
-<div class="wrap">
-<div class="card">
-<img class="banner" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
-<div class="vip-box"><span><b>WEB = VIP 👑</b><br>✅ Reconexión automática<br>✅ Siempre activo aunque se caiga<br><small>WhatsApp con .serbot = NORMAL, sin reconexión</small></span></div>
-<h2>📱 Conectarte como Sub-Bot VIP</h2>
-<p>Pon tu número, genera tu código de 8 dígitos y ponlo en WhatsApp. Sin QR.</p>
-<div class="field"><label>TU NÚMERO CON CÓDIGO DE PAÍS</label><input id="number" type="tel" placeholder="51987654321"></div>
-<button class="btn btn-code" id="btnCode" onclick="getPairingCode()">🔑 Generar Código VIP 👑</button>
-<div id="codeBox">
-<div style="font-size:12px;color:#92400e;font-weight:800">TU CÓDIGO — PONLO EN WHATSAPP</div>
-<div id="pairCode">--------</div>
-<div style="font-size:13px;color:#57534e">WhatsApp → 3 puntos → Dispositivos vinculados → Vincular con número de teléfono</div>
-<div style="margin-top:12px;font-size:13px;color:#92400e;font-weight:700">⏳ Vence en: <span id="countdown">60</span> seg</div>
-<div id="countBar"><div id="countFill"></div></div>
-<div id="expiredMsg" style="display:none;font-size:13px;color:#dc2626;font-weight:800">❌ Código vencido, genera uno nuevo</div>
-</div>
+<!-- ===== SELECTOR VERTICAL - NADA HORIZONTAL ===== -->
+<div class="label">1. TU PAÍS <span onclick="limpiarBusqueda()">Limpiar ✕</span></div>
+
+<!-- Buscador -->
+<div class="search-box"><span>🔍</span><input id="buscarPais" placeholder="Buscar país... Ej: México, Perú, +52, +51" oninput="filtrarPaises(this.value)"><button onclick="document.getElementById('buscarPais').value='';filtrarPaises('')">Limpiar</button></div>
+
+<!-- Lista VERTICAL - una debajo de otra -->
+<div class="paises-vertical" id="paisesVertical"></div>
+<div id="sinResultados" style="display:none;text-align:center;color:#94a3b8;font-size:13px;padding:14px">No encontré ese país 😢<br>Intenta con otro nombre o código</div>
+
+<!-- País seleccionado -->
+<div class="sel-actual" id="selActual"><span class="flag">🇲🇽</span><div><b>México</b><small>América del Norte • Seleccionado</small></div><span>+52</span></div>
+
+<div class="label">2. TU NÚMERO</div>
+<div class="input-num"><span class="prefijo" id="prefijoLabel">🇲🇽 +52</span><input id="number" type="tel" placeholder="5512345678" inputmode="numeric"></div>
+<div class="ejemplo" id="ejemploNum">Ej: México 5512345678 • Sin espacios, sin +</div>
+
+<button class="btn-code" id="btnCode" onclick="getPairingCode()">⚡ Generar código</button>
+
+<div class="estado"><div class="ico">🕐</div><div><small>ESTADO DEL NÚMERO</small><b id="estadoTexto">Esperando número...</b></div></div>
+
+<div class="code-box"><div class="top-row"><b>📋 Tu código</b><button class="btn-copiar" onclick="copiarCodigo()">📄 Copiar</button></div><div id="codeArea"><div id="codeEmpty">Esperando número...</div><div id="pairCode" style="display:none">--------</div></div><div style="font-size:12px;color:#94a3b8">WhatsApp → 3 puntos → Dispositivos vinculados → Vincular con número</div><div style="margin-top:10px;font-size:12px;font-weight:700">⏳ Vence en: <span id="countdown">60</span> seg</div><div id="countBar"><div id="countFill"></div></div><div id="expiredMsg" style="display:none;font-size:12px;color:#f87171;font-weight:800">❌ Código vencido, genera uno nuevo</div></div>
 <div id="status"></div>
-<div class="steps">
-<div class="step"><b>1. Pon tu número</b>Con código de país y genera el código</div>
-<div class="step"><b>2. Abre WhatsApp</b>3 puntos → Dispositivos vinculados</div>
-<div class="step"><b>3. Pon el código rápido</b>Tienes 60 seg antes que expire</div>
-<div class="step"><b>4. No cierres la página</b>Hasta que diga CONECTADO 👑</div>
-</div>
+
+<details class="details"><summary>❓ ¿Cómo vincular mi número? <span>⌄</span></summary><div><ol><li><b>Busca tu país</b> arriba y tócalo.</li><li><b>Pon tu número</b> sin el código.</li><li><b>Genera el código</b> de 8 dígitos.</li><li>En WhatsApp: <b>3 puntos → Dispositivos vinculados → Vincular con número.</b></li><li>Pega el código, tienes <b>60 segundos</b>.</li></ol></div></details>
+
+</div></div>
+
+<div class="card-dark" id="botsInline" style="display:none"><h2>🟢 Sub-Bots Conectados</h2><p><b style="color:#ff6ec4">👑 = VIP</b> | <b>⚪ = NORMAL</b></p><div id="list" class="list"></div><button class="btn-ghost" onclick="loadList()">🔄 Actualizar lista</button></div>
+
+<div class="chat-card"><div class="chat-head"><img src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg"><div><b>💬 Chat Público - Comunidad Marine</b><small>Habla con todos • En vivo • <span id="chatCount">0</span> mensajes</small></div><span class="dot"></span></div><div class="chat-body" id="chatBody"><div class="empty-chat">💬 Sé el primero en escribir.</div></div><div class="chat-input"><input id="chatName" placeholder="Tu nombre"><input id="chatMsg" placeholder="Escribe para todos..." onkeydown="if(event.key==='Enter') sendChat()"><button onclick="sendChat()">➤</button></div></div>
+
+<div class="card-dark"><h2>⭐ Reseñas, Dudas y Preguntas</h2><p>Déjanos tu opinión. <b style="color:#00e5ff">Solo el Owner responde aquí.</b></p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="revName" placeholder="Tu nombre" style="flex:1;min-width:120px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.4);color:#fff"><input id="revMsg" placeholder="Tu reseña..." style="flex:2;min-width:180px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.4);color:#fff" onkeydown="if(event.key==='Enter') sendReview()"><button class="btn-code" onclick="sendReview()" style="margin:0;width:auto;padding:12px 18px">Enviar ⭐</button></div><div id="reviews" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div></div>
 </div>
 
-<div class="card">
-<h2>🟢 Sub-Bots Conectados</h2>
-<p><b style="color:#ffd700">👑 = VIP</b> (Web, con reconexión) | <b>⚪ = NORMAL</b> (WhatsApp)</p>
-<div id="list" class="list"><div style="color:#888;font-size:13px">Cargando...</div></div>
-<button class="btn btn-ghost" onclick="loadList()">🔄 Actualizar lista</button>
-</div>
+<div class="main" id="tab-bots-only" style="display:none"><div class="card-dark" style="margin-top:0"><h2>🟢 Sub-Bots Conectados</h2><p><b style="color:#ff6ec4">👑 = VIP</b> | <b>⚪ = NORMAL</b></p><div id="list2" class="list"></div><button class="btn-ghost" onclick="loadList()">🔄 Actualizar lista</button></div></div>
 
-<div class="card chat-card">
-<div class="chat-head">
-<img src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg">
-<div style="min-width:0"><b>💬 Chat Público - Comunidad Marine</b><small>Habla con todos • Todos pueden escribir • En vivo</small></div>
-<span class="dot"></span>
-</div>
-<div class="chat-body" id="chatBody"><div class="empty-chat">💬 Sé el primero en escribir en el chat público. Converse con todos aquí.</div></div>
-<div class="chat-input">
-<input id="chatName" placeholder="Tu nombre" style="max-width:130px">
-<input id="chatMsg" placeholder="Escribe para todos..." onkeydown="if(event.key==='Enter') sendChat()">
-<button onclick="sendChat()"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2v7Z"/></svg></button>
-</div>
-</div>
-
-<div class="card" style="grid-column:1 / -1">
-<h2>⭐ Reseñas, Dudas y Preguntas</h2>
-<p>Déjanos tu opinión, duda o pregunta. <b style="color:#00e5ff">Solo el Owner responde aquí.</b> No es chat, es para reseñas.</p>
-<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="revName" placeholder="Tu nombre" style="flex:1;min-width:140px"><input id="revMsg" placeholder="Tu reseña, duda o pregunta..." style="flex:2;min-width:200px" onkeydown="if(event.key==='Enter') sendReview()"><button class="btn" onclick="sendReview()" style="margin:0;width:auto;padding:14px 20px;white-space:nowrap">Enviar ⭐</button></div>
-<div id="reviews" style="margin-top:16px;display:flex;flex-direction:column;gap:10px"></div>
-</div>
-
-</div>
-<footer>© Powered by DevsOpp 2020 - 2026 | HOUSHOU MARINE - AI | All rights reserved</footer>
+<footer>Copyright © 2022-2026 DevsOpp | HOUSHOU MARINE - AI | All rights reserved.</footer>
 
 <script>
 const API_URL = "";
 const IMG_DEFAULT = "https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg";
-let statusInterval=null;
-let countdownInterval=null;
-let secondsLeft=60;
-let pairingEnCurso = false;
-let myName = localStorage.getItem('marine_name') || '';
-if(myName){ document.getElementById('chatName').value = myName; document.getElementById('revName').value = myName; }
+// Burbujas
+for(let i=0;i<14;i++){let b=document.createElement('div');b.className='burbuja';let s=4+Math.random()*10;b.style.width=s+'px';b.style.height=s+'px';b.style.left=Math.random()*100+'%';b.style.animationDuration=(6+Math.random()*9)+'s';b.style.animationDelay=(Math.random()*8)+'s';document.querySelector('.bg').appendChild(b)}
+// Estrellas
+for(let i=0;i<30;i++){let s=document.createElement('div');s.className='estrella';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*60+'%';s.style.animationDelay=(Math.random()*3)+'s';document.querySelector('.bg').appendChild(s)}
 
-function startCountdown(){
-  if(countdownInterval) clearInterval(countdownInterval);
-  secondsLeft = 60;
-  document.getElementById('expiredMsg').style.display = 'none';
-  document.getElementById('countdown').textContent = secondsLeft;
-  document.getElementById('countFill').style.width = '100%';
-  countdownInterval = setInterval(() => {
-    secondsLeft--;
-    if(secondsLeft < 0) secondsLeft = 0;
-    document.getElementById('countdown').textContent = secondsLeft;
-    document.getElementById('countFill').style.width = (secondsLeft / 60 * 100) + '%';
-    if(secondsLeft <= 0){
-      clearInterval(countdownInterval);
-      document.getElementById('expiredMsg').style.display = 'block';
-      document.getElementById('status').textContent = '❌ Código vencido, genera uno nuevo';
-      document.getElementById('status').className = 'error';
-      pairingEnCurso = false;
-      document.getElementById('btnCode').disabled = false;
-      document.getElementById('btnCode').textContent = '🔑 Generar Código Nuevo';
-    }
-  }, 1000);
+// ===== PAISES - VERTICAL =====
+const PAISES=[
+{code:'52',flag:'🇲🇽',name:'México',region:'América del Norte',ej:'5512345678'},
+{code:'51',flag:'🇵🇪',name:'Perú',region:'América del Sur',ej:'987654321'},
+{code:'57',flag:'🇨🇴',name:'Colombia',region:'América del Sur',ej:'3001234567'},
+{code:'54',flag:'🇦🇷',name:'Argentina',region:'América del Sur',ej:'1123456789'},
+{code:'56',flag:'🇨🇱',name:'Chile',region:'América del Sur',ej:'912345678'},
+{code:'58',flag:'🇻🇪',name:'Venezuela',region:'América del Sur',ej:'4123456789'},
+{code:'593',flag:'🇪🇨',name:'Ecuador',region:'América del Sur',ej:'987654321'},
+{code:'591',flag:'🇧🇴',name:'Bolivia',region:'América del Sur',ej:'71234567'},
+{code:'595',flag:'🇵🇾',name:'Paraguay',region:'América del Sur',ej:'981234567'},
+{code:'598',flag:'🇺🇾',name:'Uruguay',region:'América del Sur',ej:'99123456'},
+{code:'55',flag:'🇧🇷',name:'Brasil',region:'América del Sur',ej:'11987654321'},
+{code:'1',flag:'🇺🇸',name:'Estados Unidos',region:'América del Norte',ej:'2123456789'},
+{code:'34',flag:'🇪🇸',name:'España',region:'Europa',ej:'612345678'},
+{code:'502',flag:'🇬🇹',name:'Guatemala',region:'Centroamérica',ej:'51234567'},
+{code:'504',flag:'🇭🇳',name:'Honduras',region:'Centroamérica',ej:'91234567'},
+{code:'505',flag:'🇳🇮',name:'Nicaragua',region:'Centroamérica',ej:'81234567'},
+{code:'506',flag:'🇨🇷',name:'Costa Rica',region:'Centroamérica',ej:'81234567'},
+{code:'507',flag:'🇵🇦',name:'Panamá',region:'Centroamérica',ej:'61234567'},
+{code:'53',flag:'🇨🇺',name:'Cuba',region:'Caribe',ej:'51234567'},
+{code:'809',flag:'🇩🇴',name:'Rep. Dominicana',region:'Caribe',ej:'8091234567'},
+];
+let paisSel=PAISES[0];
+let filtroActual='';
+function renderPaises(){
+  let lista=PAISES.filter(p=>{
+    if(!filtroActual) return true;
+    let f=filtroActual.toLowerCase();
+    return p.name.toLowerCase().includes(f) || p.code.includes(f) || ('+'+p.code).includes(f) || p.region.toLowerCase().includes(f);
+  });
+  let box=document.getElementById('paisesVertical');
+  document.getElementById('sinResultados').style.display=lista.length?'none':'block';
+  box.innerHTML=lista.map(p=>`<div class="pais-row ${p.code===paisSel.code?'active':''}" onclick="selPais('${p.code}',this)"><span class="flag">${p.flag}</span><div class="info"><b>${p.name}</b><small>${p.region} • Código +${p.code}</small></div><span class="code">+${p.code}</span><span class="check">✓</span></div>`).join('');
+  // Guarda el último país usado
+  try{localStorage.setItem('marine_pais',paisSel.code)}catch{}
 }
+function selPais(code,el){
+  paisSel=PAISES.find(p=>p.code===code);
+  document.querySelectorAll('.pais-row').forEach(x=>x.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('prefijoLabel').textContent=`${paisSel.flag} +${paisSel.code}`;
+  document.getElementById('number').placeholder=paisSel.ej;
+  document.getElementById('ejemploNum').textContent=`Ej: ${paisSel.name} ${paisSel.ej} • Sin espacios, sin +`;
+  document.getElementById('selActual').innerHTML=`<span class="flag">${paisSel.flag}</span><div><b>${paisSel.name}</b><small>${paisSel.region} • Seleccionado</small></div><span>+${paisSel.code}</span>`;
+  document.getElementById('estadoTexto').textContent=`Listo para ${paisSel.name} (+${paisSel.code})`;
+  try{localStorage.setItem('marine_pais',paisSel.code)}catch{}
+}
+function filtrarPaises(v){filtroActual=v.trim();renderPaises()}
+function limpiarBusqueda(){document.getElementById('buscarPais').value='';filtroActual='';renderPaises()}
+try{let guardado=localStorage.getItem('marine_pais');if(guardado){let p=PAISES.find(x=>x.code===guardado);if(p) paisSel=p}}catch{}
+renderPaises();
+selPais(paisSel.code,null);
 
+function showTab(tab,btn){document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(tab==='bots'){document.getElementById('tab-vincular').style.display='none';document.getElementById('tab-bots-only').style.display='block';loadList()}else{document.getElementById('tab-vincular').style.display='block';document.getElementById('tab-bots-only').style.display='none'}}
+function copiarCodigo(){let c=document.getElementById('pairCode').textContent;if(!c||c.includes('-')) return alert('Aún no hay código');navigator.clipboard.writeText(c.replace(/-/g,'')).then(()=>alert('Código copiado: '+c))}
+
+let statusInterval=null,countdownInterval=null,secondsLeft=60,pairingEnCurso=false;
+let myName=localStorage.getItem('marine_name')||'';if(myName){document.getElementById('chatName').value=myName;document.getElementById('revName').value=myName}
+function startCountdown(){if(countdownInterval)clearInterval(countdownInterval);secondsLeft=60;document.getElementById('expiredMsg').style.display='none';document.getElementById('countdown').textContent=secondsLeft;document.getElementById('countFill').style.width='100%';countdownInterval=setInterval(()=>{secondsLeft--;if(secondsLeft<0)secondsLeft=0;document.getElementById('countdown').textContent=secondsLeft;document.getElementById('countFill').style.width=(secondsLeft/60*100)+'%';if(secondsLeft<=0){clearInterval(countdownInterval);document.getElementById('expiredMsg').style.display='block';document.getElementById('status').textContent='❌ Código vencido, genera uno nuevo';document.getElementById('status').className='error';pairingEnCurso=false;document.getElementById('btnCode').disabled=false;document.getElementById('btnCode').textContent='⚡ Generar código'}},1000)}
 async function getPairingCode(){
-  if (pairingEnCurso) { console.log('Ya se esta pidiendo codigo, no mando otro'); return; }
-  const number=document.getElementById('number').value.replace(/[^0-9]/g,'');
-  if(number.length<8){ alert('Pon tu número con código de país, ej: 51987654321'); return; }
-  pairingEnCurso = true;
-  document.getElementById('btnCode').disabled=true;
-  document.getElementById('btnCode').textContent='Generando código... espera 10s, NO le des otra vez';
-  document.getElementById('status').textContent='Generando código de 8 dígitos... espera, NO le des otra vez';
-  document.getElementById('status').className='';
+  if(pairingEnCurso) return;
+  const local=document.getElementById('number').value.replace(/[^0-9]/g,'');
+  if(local.length<7){alert('Pon tu número sin el código. Ej '+paisSel.name+': '+paisSel.ej);return}
+  const number=paisSel.code+local;
+  document.getElementById('estadoTexto').textContent=`Generando código para +${number}...`;
+  pairingEnCurso=true;document.getElementById('btnCode').disabled=true;document.getElementById('btnCode').textContent='Generando... espera 10s';document.getElementById('status').textContent='Generando código de 8 dígitos...';document.getElementById('status').className='';
   try{
     const res=await fetch(API_URL+'/api/pairing',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({number})});
-    const data=await res.json();
-    if(data.error) throw new Error(data.error);
-    if(data.already){ document.getElementById('status').textContent='✅ Ya estaba conectado'; document.getElementById('status').className='success'; pairingEnCurso=false; document.getElementById('btnCode').disabled=false; document.getElementById('btnCode').textContent='🔑 Generar Código VIP 👑'; loadList(); return; }
-    document.getElementById('codeBox').style.display='block';
-    document.getElementById('pairCode').textContent=data.code;
-    document.getElementById('status').textContent='Pon ese código en WhatsApp, se conecta solo';
-    startCountdown();
-    if(statusInterval) clearInterval(statusInterval);
-    statusInterval=setInterval(async()=>{
-      const r=await fetch(API_URL+'/api/status?number='+number);
-      const s=await r.json();
-      if(s.connected){
-        clearInterval(statusInterval);
-        if(countdownInterval) clearInterval(countdownInterval);
-        document.getElementById('status').textContent='✅ CONECTADO COMO SUB-BOT VIP 👑';
-        document.getElementById('status').className='success';
-        document.getElementById('codeBox').style.display='none';
-        pairingEnCurso=false;
-        document.getElementById('btnCode').disabled=false;
-        document.getElementById('btnCode').textContent='🔑 Generar Código VIP 👑';
-        loadList();
-      }
-    },3000);
-    setTimeout(()=>{ if(pairingEnCurso && !document.getElementById('status').textContent.includes('CONECTADO')){ pairingEnCurso=false; document.getElementById('btnCode').disabled=false; document.getElementById('btnCode').textContent='🔑 Generar Código Nuevo'; } }, 70000);
-  }catch(e){
-    pairingEnCurso=false;
-    document.getElementById('status').textContent='Error: '+e.message;
-    document.getElementById('status').className='error';
-    document.getElementById('btnCode').disabled=false;
-    document.getElementById('btnCode').textContent='🔑 Generar Código VIP 👑';
-  }
+    const data=await res.json();if(data.error) throw new Error(data.error);
+    if(data.already){document.getElementById('status').textContent='✅ Ya estaba conectado';document.getElementById('status').className='success';document.getElementById('estadoTexto').textContent='✅ Conectado';pairingEnCurso=false;document.getElementById('btnCode').disabled=false;document.getElementById('btnCode').textContent='⚡ Generar código';loadList();return}
+    document.getElementById('codeEmpty').style.display='none';document.getElementById('pairCode').style.display='block';document.getElementById('pairCode').textContent=data.code;document.getElementById('estadoTexto').textContent='Código generado, ponlo en WhatsApp';document.getElementById('status').textContent='Pon ese código en WhatsApp, se conecta solo';startCountdown();
+    if(statusInterval)clearInterval(statusInterval);
+    statusInterval=setInterval(async()=>{const r=await fetch(API_URL+'/api/status?number='+number);const s=await r.json();if(s.connected){clearInterval(statusInterval);if(countdownInterval)clearInterval(countdownInterval);document.getElementById('status').textContent='✅ CONECTADO COMO SUB-BOT VIP 👑';document.getElementById('status').className='success';document.getElementById('estadoTexto').textContent='✅ CONECTADO 👑';document.getElementById('codeEmpty').style.display='flex';document.getElementById('codeEmpty').textContent='✅ Conectado';document.getElementById('pairCode').style.display='none';pairingEnCurso=false;document.getElementById('btnCode').disabled=false;document.getElementById('btnCode').textContent='⚡ Generar código';loadList()}},3000);
+    setTimeout(()=>{if(pairingEnCurso){pairingEnCurso=false;document.getElementById('btnCode').disabled=false;document.getElementById('btnCode').textContent='⚡ Generar código'}},70000);
+  }catch(e){pairingEnCurso=false;document.getElementById('status').textContent='Error: '+e.message;document.getElementById('status').className='error';document.getElementById('btnCode').disabled=false;document.getElementById('btnCode').textContent='⚡ Generar código'}
 }
 async function loadList(){
   try{
-    const r=await fetch(API_URL+'/api/list'); const data=await r.json();
-    const box=document.getElementById('list');
-    document.getElementById('count').textContent=data.list?.length||0;
-    if(!data.list||!data.list.length){ box.innerHTML='<div style="color:#888;font-size:13px">Aún no hay Sub-Bots conectados. Sé el primero 👑</div>'; return; }
-    box.innerHTML=data.list.map(u=>`<div class="item"><img src="${u.pic||IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'"><div style="min-width:0"><b>${u.name||'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div><span class="badge ${u.vip?'badge-vip':'badge-normal'}">${u.vip?'👑 VIP':'⚪ NORMAL'}</span></div>`).join('');
-  }catch(e){ document.getElementById('list').innerHTML='Error al cargar lista'; }
+    const r=await fetch(API_URL+'/api/list');const data=await r.json();const total=data.list?.length||0;document.getElementById('count').textContent=total;document.getElementById('barFill').style.width=Math.min(total/120*100,100)+'%';
+    if(total>=120){document.getElementById('alertaLimite').style.display='block';document.getElementById('btnCode').disabled=true;document.getElementById('btnCode').textContent='Límite alcanzado'}
+    const html=!data.list?.length?'<div style="color:#888;font-size:13px">Aún no hay Sub-Bots. Sé el primero 👑</div>':data.list.map(u=>`<div class="item"><img src="${u.pic||IMG_DEFAULT}" onerror="this.src='${IMG_DEFAULT}'"><div style="min-width:0"><b>${u.name||'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>● En línea</span></div><span class="badge ${u.vip?'badge-vip':'badge-normal'}">${u.vip?'👑 VIP':'⚪ NORMAL'}</span></div>`).join('');
+    let a=document.getElementById('list');if(a)a.innerHTML=html;let b=document.getElementById('list2');if(b)b.innerHTML=html;
+  }catch(e){}
 }
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
-async function loadChat(){
-  try{
-    const r=await fetch(API_URL+'/api/chat'); const d=await r.json();
-    const box=document.getElementById('chatBody');
-    document.getElementById('chatCount').textContent=d.chat?.length||0;
-    if(!d.chat?.length){ box.innerHTML='<div class="empty-chat">💬 Sé el primero en escribir. Habla con toda la comunidad Marine.</div>'; return; }
-    let my = document.getElementById('chatName').value.trim();
-    box.innerHTML=d.chat.slice(-60).map(x=>{
-      let isMe = my && x.name===my;
-      return `<div class="msg ${isMe?'msg-out':'msg-in'}"><b>${esc(x.name)} ${isMe?'(Tú)':''}</b>${esc(x.message)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>`;
-    }).join('');
-    box.scrollTop=box.scrollHeight;
-  }catch{}
-}
-async function sendChat(){
-  const name=document.getElementById('chatName').value.trim()||'Anónimo';
-  const message=document.getElementById('chatMsg').value.trim();
-  if(!message) return alert('Escribe algo');
-  localStorage.setItem('marine_name', name);
-  document.getElementById('revName').value=name;
-  await fetch(API_URL+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});
-  document.getElementById('chatMsg').value='';
-  loadChat();
-}
-async function loadReviews(){
-  try{
-    const r=await fetch(API_URL+'/api/reviews'); const d=await r.json();
-    const box=document.getElementById('reviews');
-    if(!d.reviews?.length){ box.innerHTML='<div style="color:#888;font-size:13px">Sin reseñas aún, sé el primero.</div>'; return; }
-    box.innerHTML=d.reviews.slice(0,20).map(x=>`
-      <div class="review-item"><b>${esc(x.name)}</b> <small>${esc(x.date)}</small><p>${esc(x.message)}</p>
-      ${x.reply?`<div class="review-reply"><b>👑 Owner responde:</b><br>${esc(x.reply)}</div>`:`<small style="color:#facc15">⏳ Esperando respuesta del Owner...</small>`}
-      </div>`).join('');
-  }catch{}
-}
-async function sendReview(){
-  const name=document.getElementById('revName').value.trim()||'Anónimo';
-  const message=document.getElementById('revMsg').value.trim();
-  if(!message) return alert('Escribe tu reseña, duda o pregunta');
-  localStorage.setItem('marine_name', name);
-  document.getElementById('chatName').value=name;
-  await fetch(API_URL+'/api/reviews',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});
-  document.getElementById('revMsg').value='';
-  loadReviews();
-}
-loadList(); loadChat(); loadReviews();
-setInterval(loadList,15000); setInterval(loadChat,3000); setInterval(loadReviews,8000);
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+async function loadChat(){try{const r=await fetch(API_URL+'/api/chat');const d=await r.json();const box=document.getElementById('chatBody');document.getElementById('chatCount').textContent=d.chat?.length||0;if(!d.chat?.length){box.innerHTML='<div class="empty-chat">💬 Sé el primero en escribir.</div>';return}let my=document.getElementById('chatName').value.trim();box.innerHTML=d.chat.slice(-60).map(x=>{let isMe=my&&x.name===my;return `<div class="msg ${isMe?'msg-out':'msg-in'}"><b>${esc(x.name)} ${isMe?'(Tú)':''}</b>${esc(x.message)}<span class="time">${esc(String(x.date||'').slice(11,16))} ✓✓</span></div>`}).join('');box.scrollTop=box.scrollHeight}catch{}}
+async function sendChat(){const name=document.getElementById('chatName').value.trim()||'Anónimo';const message=document.getElementById('chatMsg').value.trim();if(!message) return alert('Escribe algo');localStorage.setItem('marine_name',name);document.getElementById('revName').value=name;await fetch(API_URL+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});document.getElementById('chatMsg').value='';loadChat()}
+async function loadReviews(){try{const r=await fetch(API_URL+'/api/reviews');const d=await r.json();const box=document.getElementById('reviews');if(!d.reviews?.length){box.innerHTML='<div style="color:#888;font-size:13px">Sin reseñas aún, sé el primero.</div>';return}box.innerHTML=d.reviews.slice(0,20).map(x=>`<div class="review-item"><b>${esc(x.name)}</b> <small>${esc(x.date)}</small><p>${esc(x.message)}</p>${x.reply?`<div class="review-reply"><b>👑 Owner responde:</b><br>${esc(x.reply)}</div>`:`<small style="color:#ff6ec4">⏳ Esperando respuesta del Owner...</small>`}</div>`).join('')}catch{}}
+async function sendReview(){const name=document.getElementById('revName').value.trim()||'Anónimo';const message=document.getElementById('revMsg').value.trim();if(!message) return alert('Escribe tu reseña');localStorage.setItem('marine_name',name);document.getElementById('chatName').value=name;await fetch(API_URL+'/api/reviews',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});document.getElementById('revMsg').value='';loadReviews()}
+loadList();loadChat();loadReviews();setInterval(loadList,15000);setInterval(loadChat,3000);setInterval(loadReviews,8000);
 </script>
 </body>
-</html> 
+</html>
