@@ -232,14 +232,15 @@ footer b{color:#fff}
 const API_URL = "";
 const IMG_DEFAULT = "https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg";
 const LINK_COMUNIDAD = "https://chat.whatsapp.com/GAzF9ICsYar7O6Yhe4Y5R0?s=cl&p=a&mlu=4&ilr=4&iam=2";
-const ICON_USER = "https://i.imgur.com/6YQ9Z8a.png";
+const ICON_USER = "https://ui-avatars.com/api/?name=U&background=0e7490&color=fff&size=128";
+const ICON_Q = "https://ui-avatars.com/api/?name=?&background=334155&color=fff&size=128";
 for(let i=0;i<16;i++){let b=document.createElement('div');b.className='burbuja';let s=4+Math.random()*12;b.style.width=s+'px';b.style.height=s+'px';b.style.left=Math.random()*100+'%';b.style.animationDuration=(6+Math.random()*9)+'s';b.style.animationDelay=(Math.random()*8)+'s';document.querySelector('.bg').appendChild(b)}
 
-// ===== DEVS - FOTO REAL, SIN NUMERO, SIN HOUSHOU =====
+// ===== DEVS - FOTO REAL VIA PROXY, SIN NUMERO, SIN IMGUR ROTO =====
 const DEVS_MANUAL=[
 {nombre:'Xplorazzy Tech',usuario:'@DevsOpp',pic:'',rol:'PROPIETARIO',rolClass:'rol-propietario',cardClass:'owner',btnClass:'dev-btn-propietario',desc:'Dueno y creador del bot. Encargado del codigo, la web y toda la red Marine.',whatsapp:'https://wa.me/51954087647',number:'51954087647'},
 {nombre:'DevsOpp',usuario:'@DevsOpp',pic:'https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg',rol:'OWNER',rolClass:'rol-owner',cardClass:'owner2',btnClass:'dev-btn-owner',desc:'Owner del proyecto. Ayuda con soporte, resenas y moderacion de la comunidad.',whatsapp:'https://wa.me/51939590305',number:'51939590305'},
-{nombre:'Incognito',usuario:'@incognito',pic:'https://i.imgur.com/6YQ9Z8a.png',rol:'DEV / SOPORTE',rolClass:'rol-dev',cardClass:'dev',btnClass:'dev-btn-dev',desc:'Dev / Soporte en incognito. Proximamente se revelara su identidad.',whatsapp:LINK_COMUNIDAD,number:''},
+{nombre:'Incognito',usuario:'@incognito',pic:'https://ui-avatars.com/api/?name=?&background=334155&color=fff&size=128',rol:'DEV / SOPORTE',rolClass:'rol-dev',cardClass:'dev',btnClass:'dev-btn-dev',desc:'Dev / Soporte en incognito. Proximamente se revelara su identidad.',whatsapp:LINK_COMUNIDAD,number:''},
 ];
 async function loadDevs(){
   let devs = DEVS_MANUAL;
@@ -337,4 +338,4 @@ async function sendReview(){const name=document.getElementById('revName').value.
 loadList();loadChat();loadReviews();setInterval(loadList,15000);setInterval(loadChat,3000);setInterval(loadReviews,8000);
 </script>
 </body>
-</html>
+                                </html>
