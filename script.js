@@ -122,11 +122,16 @@ async function getPairingCodeNormal(){
 }
 async function loadList(){
   try{
-    const r=await fetch(API_URL+'/api/list');const data=await r.json();const total=data.list?.length||0;document.getElementById('count').textContent=total;document.getElementById('barFill').style.width=Math.min(total/120*100,100)+'%';
+    const r=await fetch(API_URL+'/api/list');const data=await r.json();
+    const total=data.list?.length||0;
+    document.getElementById('count').textContent=total;
+    let countTop=document.getElementById('countBotsTop'); if(countTop) countTop.textContent=total;
+    document.getElementById('barFill').style.width=Math.min(total/120*100,100)+'%';
     if(total>=120){document.getElementById('alertaLimite').style.display='block';document.getElementById('btnCode').disabled=true;document.getElementById('btnCode').textContent='Limite alcanzado'}
-    const html=!data.list?.length?'<div style="color:#888;font-size:13px">Aun no hay Sub-Bots. Se el primero</div>':data.list.map(u=>{
+    const html=!data.list?.length?'<div style="color:#888;font-size:13px;text-align:center;padding:16px">Aun no hay Sub-Bots. Se el primero</div>':data.list.map(u=>{
       let foto = u.pic || ICON_USER;
-      return `<div class="item"><img src="${foto}" onerror="this.onerror=null;this.src='${ICON_USER}'"><div class="info-bot"><b>${u.name||'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>En linea</span></div><span class="badge ${u.vip?'badge-vip':'badge-normal'}">${u.vip?'VIP':'NORMAL'}</span></div>`;
+      let isVip = !!u.vip;
+      return `<div class="item ${isVip?'item-vip':'item-normal'}"><img src="${foto}" onerror="this.onerror=null;this.src='${ICON_USER}'"><div class="info-bot"><b>${u.name||'Sub-Bot'}</b><small>wa.me/${u.number}</small><span>En linea</span></div><span class="badge ${isVip?'badge-vip':'badge-normal'}">${isVip?'<svg viewBox="0 0 24 24"><path d="M2 18h20l-2-9-6 4-2-7-2 7-6-4-2 9zM4 20h16v2H4z"/></svg> VIP':'NORMAL'}</span></div>`;
     }).join('');
     let b=document.getElementById('list2');if(b)b.innerHTML=html;
   }catch(e){}
