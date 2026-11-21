@@ -140,8 +140,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#050f1c;color:var(--t
 .item small{font-size:11px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .item span{font-size:11px;color:#22c55e}
 .badge{padding:5px 9px;border-radius:100px;font-size:11px;margin-left:auto;font-weight:700;white-space:nowrap;flex-shrink:0}
-.badge-vip{background:var(--cyan);color:#04121f}
-.badge-normal{background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--line)}
+.badge-vip{background:linear-gradient(135deg,#FFF7CC 0%,#FFD700 35%,#FFB800 65%,#FF8A00 100%)!important;color:#1A1000!important;font-weight:900!important;font-size:13px!important;letter-spacing:1.5px!important;padding:9px 15px!important;border-radius:100px!important;border:2px solid #FFF3B0!important;box-shadow:0 4px 16px rgba(255,180,0,.55), inset 0 1px 0 #fff!important;display:inline-flex!important;align-items:center!important;gap:6px!important;text-transform:uppercase!important}
+.badge-vip svg{width:14px;height:14px;fill:#1A1000;flex-shrink:0}
+.badge-normal{background:rgba(255,255,255,.08)!important;color:#94a3b8!important;border:1px solid rgba(148,163,184,.3)!important;font-weight:700!important;font-size:11px!important;letter-spacing:1px!important;padding:8px 12px!important;border-radius:100px!important}
 .btn-ghost{width:100%;padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff;font-weight:700;cursor:pointer;margin-top:10px}
 .chat-card{background:#fff;border-radius:22px;overflow:hidden;color:#111}
 .chat-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#0a1a2e;color:#fff}
@@ -167,11 +168,18 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#050f1c;color:var(--t
 .review-reply{background:rgba(56,189,248,.1);border-left:3px solid var(--cyan);padding:8px;border-radius:10px;font-size:12px;margin-top:8px}
 footer{text-align:center;color:#7dd3fc;font-size:11px;padding:18px 14px;line-height:1.6}
 footer b{color:#fff}
-/* TABLET */
-@media(min-width:640px){
-  .star-grid{grid-template-columns:1fr 1fr 1fr}
-}
-/* ESCRITORIO - AQUI SE ARREGLA TODO */
+.bots-card{padding:22px}
+.bots-head h2{font-size:22px;letter-spacing:-.3px}
+.bots-sub{font-size:13px;color:var(--muted);margin:4px 0 12px}
+.bots-filtros{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill-vip{background:linear-gradient(135deg,#FFF7CC,#FFD700 40%,#FF8A00)!important;color:#1A1000!important;font-weight:900!important;font-size:12px!important;letter-spacing:1.5px!important;padding:7px 14px!important;border-radius:100px!important;border:2px solid #FFF3B0!important;box-shadow:0 4px 14px rgba(255,180,0,.5)!important}
+.pill-normal{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted);font-weight:700;font-size:11px;letter-spacing:1.5px;padding:7px 12px;border-radius:100px}
+.bots-count{margin-left:auto;font-size:12px;color:var(--muted)}
+.bots-count b{color:#fff;font-size:14px}
+.item-vip{background:linear-gradient(135deg,rgba(255,215,0,.14) 0%,rgba(255,180,0,.06) 50%,rgba(0,0,0,.3) 100%)!important;border:1px solid rgba(255,215,0,.55)!important;box-shadow:0 8px 22px rgba(255,180,0,.15)!important}
+.item-vip img{border-color:#FFD700!important;box-shadow:0 0 0 3px rgba(255,215,0,.25)!important}
+.item-normal{opacity:.92}
+@media(min-width:640px){.star-grid{grid-template-columns:1fr 1fr 1fr}}
 @media(min-width:900px){
   .topbar{max-width:1080px;padding:20px 20px 0}
   .main{max-width:1080px;padding:0 20px 30px}
@@ -183,9 +191,8 @@ footer b{color:#fff}
   .titulo{font-size:46px}
   #tab-bots-only,#tab-devs-only{max-width:720px}
 }
-/* PANTALLA MUY GRANDE */
 @media(min-width:1280px){
   .topbar{max-width:1200px}
   .main{max-width:1200px}
   .layout-desktop{grid-template-columns:600px 1fr;gap:24px}
-          }
+                     }
