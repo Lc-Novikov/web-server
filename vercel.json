@@ -1,6 +1,8 @@
 {
   "rewrites": [
     { "source": "/api/:path*", "destination": "http://64.20.54.50:25543/api/:path*" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/style.css", "destination": "/web/style.css" },
+    { "source": "/script.js", "destination": "/web/script.js" },
+    { "source": "/(.*)", "destination": "/web/index.html" }
   ]
 }
