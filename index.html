@@ -97,7 +97,22 @@
 </div>
 </div>
 </div>
-<div class="main" id="tab-bots-only" style="display:none"><div class="card-dark" style="margin-top:0"><h2>Sub-Bots Conectados</h2><p><b style="color:#38bdf8">VIP</b> | <b>NORMAL</b></p><div id="list2" class="list"></div><button class="btn-ghost" onclick="loadList()">Actualizar lista</button></div><footer>Copyright © 2020-2026 DevsOpp | <b>HOUSHOU MARINE</b><br>All rights reserved.</footer></div>
+<div class="main" id="tab-bots-only" style="display:none">
+  <div class="card-dark bots-card">
+    <div class="bots-head">
+      <h2>Sub-Bots Conectados</h2>
+      <p class="bots-sub">Tripulacion en linea ahora</p>
+      <div class="bots-filtros">
+        <span class="pill-vip">VIP</span>
+        <span class="pill-normal">NORMAL</span>
+        <span class="bots-count"><b id="countBotsTop">0</b> conectados</span>
+      </div>
+    </div>
+    <div id="list2" class="list"></div>
+    <button class="btn-ghost" onclick="loadList()">Actualizar lista</button>
+  </div>
+  <footer>Copyright © 2020-2026 DevsOpp | <b>HOUSHOU MARINE</b><br>All rights reserved.</footer>
+</div>
 <div class="main" id="tab-devs-only" style="display:none">
 <div class="card-premium"><div class="card-inner">
 <div class="devs-head"><div class="devs-crown">DEVSOPP</div><h2>Equipo <span>DevsOpp</span></h2><p>Las personas detras de HOUSHOU MARINE.<br>Solo ellos pueden responder resenas y dar soporte oficial.</p></div>
@@ -108,4 +123,4 @@
 </div>
 <script src="script.js"></script>
 </body>
-                           </html>
+</html>
