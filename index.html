@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOUSHOU MARINE — Sub-Bot VIP</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="topbar"><b>HOUSHOU <span>MARINE</span> - Pairing</b><div class="tabs"><button class="active" onclick="showTab('vincular',this)">Vincular</button><button onclick="showTab('bots',this)">Ver bots</button><button onclick="showTab('devs',this)">Devs</button></div></div>
+<div class="main" id="tab-vincular">
+<div class="card-premium"><div class="card-inner">
+<div class="avatar-wrap"><div class="avatar-ring"></div><img class="hero-avatar" src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg"></div>
+<div style="text-align:center"><span class="badge-vinc">Vinculacion</span></div>
+<h1 class="titulo">Houshou<br><span>Marine</span></h1>
+<div class="sub">Capitana del mar - Vincula tu WhatsApp</div>
+<p class="desc">Elige qué quieres hacer, pon tu número y genera tu código. Sin QR, sin complicaciones. VIP gratis por el momento.</p>
+<div class="subbots"><div class="subbots-top"><small>SUB-BOTS ACTIVOS<br>Tripulacion en linea ahora</small><b><span id="count">—</span> <span>/ 120</span></b></div><div class="bar"><div class="bar-fill" id="barFill"></div></div><div class="alerta" id="alertaLimite">Se alcanzo el limite de 120 sub-bots.</div></div>
+<div class="hm-elige"><b>✨ Elige qué quieres hacer <span>ahora</span> ✨</b><small>VIP es gratis por el momento.<br>Toca una tarjeta, no son pestañas de arriba.</small></div>
+<div class="star-grid">
+  <div class="star-card" id="cardToken" onclick="seleccionarModo('token')">
+    <span class="star-ico">🎟️</span><h3>Comprar Token</h3><p>Obtén un token de acceso directamente con tu número de WhatsApp.</p><p class="star-gratis">✨ GRATIS por el momento</p><button class="star-btn" type="button" onclick="event.stopPropagation(); seleccionarModo('token'); document.getElementById('tokenBoxNumero').focus()">Comprar token</button><div class="star-ir">Ir a Token <span>→</span></div>
+  </div>
+  <div class="star-card active" id="cardVip" onclick="seleccionarModo('vip')">
+    <span class="star-ico">👑</span><h3>Registrar Houshou VIP</h3><p>Usa tu token premium para registrar una sesión Houshou VIP.</p><p class="star-gratis">✅ Con reconexión automática</p><button class="star-btn" type="button" onclick="event.stopPropagation(); seleccionarModo('vip')">Registrar Houshou VIP</button><div class="star-ir">Ir a Houshou VIP <span>→</span></div>
+  </div>
+  <div class="star-card" id="cardNormal" onclick="seleccionarModo('normal')">
+    <span class="star-ico">🤖</span><h3>Registrar Houshou Bot</h3><p>Genera un código de vinculación gratuito para tu nuevo bot.</p><p class="star-gratis">⚪ Sin token, solo tu número</p><button class="star-btn" type="button" onclick="event.stopPropagation(); seleccionarModo('normal')">Generar código</button><div class="star-ir">Ir a Houshou Bot <span>→</span></div>
+  </div>
+</div>
+<div class="hm-token-box" id="tokenGenerarBox" style="display:none">
+  <label>🎟️ TU NÚMERO PARA GENERAR TU TOKEN GRATIS</label>
+  <input class="hm-token-input" id="tokenBoxNumero" placeholder="Ej: 51987654321" inputmode="numeric" style="text-transform:none">
+  <small>⚠️ Pon tu número completo con código de país. El token solo servirá para ese número.</small>
+  <button class="btn-code vip-mode" id="btnGenerarToken" onclick="comprarToken()" style="margin-top:12px">🎟️ Generar mi Token Gratis</button>
+  <div id="tokenGeneradoBox" style="display:none;margin-top:12px;background:rgba(0,0,0,.45);border:1.5px dashed var(--gold);border-radius:14px;padding:12px;text-align:center">
+    <small style="color:var(--gold);font-weight:900">TU TOKEN VIP - CÓPIALO</small>
+    <div id="tokenGenerado" style="font-size:22px;font-weight:900;letter-spacing:2px;margin:8px 0;color:#fff">HM-XXXX-XXXX</div>
+    <button class="btn-copiar" onclick="copiarTokenGenerado()">Copiar token</button>
+    <div style="font-size:12px;color:#94a3b8;margin-top:8px">Ahora toca la tarjeta <b style="color:var(--gold)">Registrar Houshou VIP</b> y pega este token abajo 👇</div>
+  </div>
+  <div id="tokenStatus" style="margin-top:8px;font-size:13px;text-align:center"></div>
+</div>
+<div class="hm-token-box show" id="tokenBox">
+  <label>🔑 TU TOKEN VIP</label>
+  <input class="hm-token-input" id="tokenVip" placeholder="HM-XXXX-XXXX" autocomplete="off">
+  <small>⚠️ ¿No tienes token? Toca arriba la tarjeta <b>Comprar Token</b>, es gratis por el momento. Este token solo funciona para tu número.</small>
+</div>
+<div class="label">1. TU PAIS <span onclick="limpiarBusqueda()">Limpiar X</span></div>
+<div class="search-box"><span>Buscar</span><input id="buscarPais" placeholder="Buscar pais... Ej: Mexico, Japon, +52, +81" oninput="filtrarPaises(this.value)"><button onclick="limpiarBusqueda()">Limpiar</button></div>
+<div class="count-paises" id="countPaises">Cargando paises...</div>
+<div class="paises-vertical" id="paisesVertical"></div>
+<div id="sinResultados" style="display:none;text-align:center;color:#94a3b8;font-size:13px;padding:14px">No encontre ese pais<br>Intenta con otro nombre o codigo</div>
+<div class="sel-actual" id="selActual"></div>
+<div class="label">2. TU NUMERO</div>
+<div class="input-num"><span class="prefijo" id="prefijoLabel"></span><input id="number" type="tel" placeholder="5512345678" inputmode="numeric"></div>
+<div class="ejemplo" id="ejemploNum"></div>
+<button class="btn-code vip-mode" id="btnCode" onclick="getPairingCode()">✨ Generar código VIP</button>
+<div class="estado"><div class="ico">!</div><div><small>ESTADO DEL NUMERO</small><b id="estadoTexto">Esperando numero...</b></div></div>
+<div class="code-box"><div class="top-row"><b>Tu codigo</b><button class="btn-copiar" onclick="copiarCodigo()">Copiar</button></div><div id="codeArea"><div id="codeEmpty">Esperando numero...</div><div id="pairCode" style="display:none">--------</div></div><div style="font-size:12px;color:#94a3b8">WhatsApp - 3 puntos - Dispositivos vinculados - Vincular con numero</div><div style="margin-top:10px;font-size:12px;font-weight:700">Vence en: <span id="countdown">60</span> seg</div><div id="countBar"><div id="countFill"></div></div><div id="expiredMsg" style="display:none;font-size:12px;color:#f87171;font-weight:800">Codigo vencido, genera uno nuevo</div></div>
+<div id="status"></div>
+<details class="details"><summary>Como vincular mi numero? <span> v </span></summary><div><ol><li><b>Si eres VIP:</b> 1. Toca Comprar Token, genera tu token gratis. 2. Toca Registrar Houshou VIP, pon tu número + token.</li><li><b>Si eres Normal:</b> Toca Registrar Houshou Bot, solo tu número.</li><li><b>Busca tu pais</b> y tocalo.</li><li><b>Pon tu numero</b> sin el codigo.</li><li><b>Genera el codigo</b> de 8 digitos.</li><li>En WhatsApp: <b>3 puntos - Dispositivos vinculados - Vincular con numero.</b></li><li>Pega el codigo, tienes <b>60 segundos</b>.</li></ol></div></details>
+</div></div>
+<div class="chat-card"><div class="chat-head"><img src="https://raw.githubusercontent.com/starlyn-chann/Mistic-star/main/tourl/1794774266726-WGupaVZkmPsx.jpg"><div><b>Chat Publico - Comunidad Marine</b><small>Habla con todos - En vivo - <span id="chatCount">0</span> mensajes</small></div><span class="dot"></span></div><div class="chat-body" id="chatBody"><div class="empty-chat">Se el primero en escribir.</div></div><div class="chat-input"><input id="chatName" placeholder="Tu nombre"><input id="chatMsg" placeholder="Escribe para todos..." onkeydown="if(event.key==='Enter') sendChat()"><button onclick="sendChat()"> &gt; </button></div></div>
+<div class="card-dark"><h2>Resenas, Dudas y Preguntas</h2><p>Dejanos tu opinion. <b style="color:#00e5ff">Solo el Owner responde aqui.</b></p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="revName" placeholder="Tu nombre" style="flex:1;min-width:120px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.4);color:#fff"><input id="revMsg" placeholder="Tu resena..." style="flex:2;min-width:180px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.4);color:#fff" onkeydown="if(event.key==='Enter') sendReview()"><button class="btn-code" onclick="sendReview()" style="margin:0;width:auto;padding:12px 18px">Enviar</button></div><div id="reviews" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div></div>
+<div class="footer-comunidad"><div class="label-comu">UNETE A LA COMUNIDAD</div><a class="btn-comunidad" href="https://chat.whatsapp.com/GAzF9ICsYar7O6Yhe4Y5R0?s=cl&p=a&mlu=4&ilr=4&iam=2" target="_blank" rel="noopener"><span class="wa-ico"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><span style="text-align:left;flex:1">Comunidad Oficial Marine<small>Grupo oficial - Avisos, ayuda y novedades</small></span><span> &gt; </span></a></div>
+<footer>Copyright © 2020-2026 DevsOpp | <b>HOUSHOU MARINE</b><br>All rights reserved.</footer>
+</div>
+<div class="main" id="tab-bots-only" style="display:none"><div class="card-dark" style="margin-top:0"><h2>Sub-Bots Conectados</h2><p><b style="color:#ff6ec4">VIP</b> | <b>NORMAL</b></p><div id="list2" class="list"></div><button class="btn-ghost" onclick="loadList()">Actualizar lista</button></div><footer>Copyright © 2020-2026 DevsOpp | <b>HOUSHOU MARINE</b><br>All rights reserved.</footer></div>
+<div class="main" id="tab-devs-only" style="display:none">
+<div class="card-premium"><div class="card-inner">
+<div class="devs-head"><div class="devs-crown">DEVSOPP</div><h2>Equipo <span>DevsOpp</span></h2><p>Las personas detras de HOUSHOU MARINE.<br>Solo ellos pueden responder resenas y dar soporte oficial.</p></div>
+<div id="devsList"></div>
+<p style="text-align:center;color:#64748b;font-size:11px;margin-top:4px">Cuidado con impostores. Solo contacta a los Devs desde esta pagina o la Comunidad Oficial.</p>
+</div></div>
+<footer>Copyright © 2020-2026 DevsOpp | <b>HOUSHOU MARINE</b><br>All rights reserved.</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
