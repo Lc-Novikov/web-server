@@ -24,7 +24,7 @@ async function comprarToken(){
   if(!numInput){
     numInput = document.getElementById('number').value.replace(/[^0-9]/g,'');
   }
-  if(!numInput || numInput.length < 9){ alert('Pon tu número completo con código de país. Ej: 51987654321'); return; }
+  if(!numInput || numInput.length < 9){ alert('Pon tu número completo con código de país. Ej: 521754437534'); return; }
   let btn = document.getElementById('btnGenerarToken');
   btn.disabled = true; btn.textContent = 'Generando tu token...';
   document.getElementById('tokenStatus').textContent = '';
